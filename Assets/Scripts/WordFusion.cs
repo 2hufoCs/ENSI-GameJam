@@ -1,62 +1,168 @@
+using System;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class WordFusion : MonoBehaviour
 {
-        [ReadOnly]
-        public Stack<List<string>> finalStack;
-        [SerializeField]
-        private List<string> testList =  new List<string>();
+        
+        private readonly List<Stack<List<string>>> _stackList = new List<Stack<List<string>>>();
+        public readonly Queue<List<String>> finalQueue = new Queue<List<string>>();
 
         [SerializeField] private string testWord;
+        [SerializeField] private string testWord2;    
 
-        private List<string> GenerateInitialList(string initialWord)
+        public int InitiateKeys(string initialWord,string finalWord)
         {
-                List<string> returnList = new List<string>();
-                returnList.Add(initialWord);
-                return returnList;
+                int numberOfWaves = GenerateListStack(initialWord);
+
+                while (true)
+                {
+                        List<string> list = Combine();
+                        if (list == null) break;
+                        finalQueue.Enqueue(list);
+                }
+                finalQueue.Enqueue(GrabTopStacks());
+                finalQueue.Enqueue(GenerateInitialList(finalWord));
+                return numberOfWaves;
         }
         
-        public void GenerateStack(string initialWord)
+        
+        
+        [Button]
+        private List<string> Combine()
         {
-                finalStack = new Stack<List<string>>();
+                List<string> words = GrabTopStacks();
+                List<int> indexes = new List<int>();
+                int smallestIndex = int.MaxValue;
+                for (int i = 0; i < _stackList.Count; i++)
+                {
+                        foreach (string word in _stackList[i].Peek())
+                        {
+                                if(_stackList[i].Count > 1)
+                                {
+                                        if (word.Length < smallestIndex)
+                                        {
+                                                indexes.Clear();
+                                                indexes.Add(i);
+                                                smallestIndex = word.Length;
+                                        }
+                                        else if (word.Length == smallestIndex)
+                                        {
+                                                indexes.Add(i);
+                                        }
+                                }
+                        }
+                }
+
+                foreach (Stack<List<string>> stack in _stackList)
+                {
+                        if (stack.Count > 1)
+                        {
+                                _stackList[indexes[Random.Range(0, indexes.Count)]].Pop();
+                                return words;
+                        }
+                }
+                return null;
+
+                //PrintStack();
+
+        }
+        private List<string> GrabTopStacks()
+        {
+                List<string> returnList = new List<string>();
+                foreach (Stack<List<string>> stack in _stackList)
+                {
+                        returnList.AddRange(stack.Peek());
+                }
+                return returnList;
+        }
+
+        private int GenerateListStack(string initialWord)
+        {
+                _stackList.Clear();
+                List<string> words = GenerateWordList(initialWord);
+                int total = 0;
+                foreach (string word in words)
+                {
+                        Stack<List<string>> stack = GenerateStack(word);
+                        foreach (List<string> printStack in stack)
+                        {
+                                string printing = "";
+                                foreach (string letter in printStack)
+                                {
+                                        printing += " , " + letter;
+                                }
+                        }
+                        total += stack.Count - 1;
+                        _stackList.Add(stack);
+                }
+
+                total+= 2;
+                return total;
+        }
+        
+        private List<string> GenerateWordList(string initialWord)
+        {
+                List<string> words = new List<string>();
+                string temp = "";
+                foreach (char letter in initialWord)
+                {
+                        if (String.IsNullOrWhiteSpace(letter.ToString()))
+                        {
+                                words.Add(temp);
+                                temp = "";
+                        }
+                        else
+                        {
+                                temp += letter;
+                        }
+                }
+                words.Add(temp);
+                return words;
+        }
+        private Stack<List<string>> GenerateStack(string initialWord)
+        {
+                Stack<List<string>> finalStack = new Stack<List<string>>();
                 finalStack.Push(GenerateInitialList(initialWord));
                 while (NumberOfDivisible(finalStack.Peek()).Count > 0)
                 {
-                        List<int> indexs = NumberOfDivisible(finalStack.Peek());
-                        Shuffle(indexs);
-                        for (int y = 0; y < indexs.Count; y++)
+                        List<int> indexes = NumberOfDivisible(finalStack.Peek());
+                        Shuffle(indexes);
+                        for (int y = 0; y < indexes.Count; y++)
                         {
                                 int offset = 0;
                                 for (int i = 0; i < y; i++)
                                 {
-                                        if (indexs[i] < indexs[y])
+                                        if (indexes[i] < indexes[y])
                                         {
                                                 offset++;
                                         }
                                 }
                         
-                                string split = finalStack.Peek()[indexs[y] + offset];
+                                string split = finalStack.Peek()[indexes[y] + offset];
                                 List<string> start = new List<string>();
                                 List<string> end = new List<string>();
 
                                 for (int i = 0; i < finalStack.Peek().Count; i++)
                                 {
-                                        if (i < indexs[y] + offset)
+                                        if (i < indexes[y] + offset)
                                         {
                                                 start.Add(finalStack.Peek()[i]);
                                         }
-                                        else if (i > indexs[y] + offset)
+                                        else if (i > indexes[y] + offset)
                                         {
                                                 end.Add(finalStack.Peek()[i]);
                                         }
                                 }
-                                List<string> middle = new List<string>();
-                                middle.Add(split.Substring(0, split.Length/ 2));
-                                middle.Add(split.Substring(split.Length/ 2));
-                        
-                        
+                                List<string> middle = new List<string>
+                                {
+                                        split.Substring(0, split.Length / 2),
+                                        split.Substring(split.Length / 2)
+                                };
+
+
                                 List<string> final = new List<string>();
                                 final.AddRange(start);
                                 final.AddRange(middle);
@@ -65,6 +171,13 @@ public class WordFusion : MonoBehaviour
                                 finalStack.Push(final);
                         }
                 }
+                return finalStack;
+        }
+        
+        private List<string> GenerateInitialList(string initialWord)
+        {
+                List<string> returnList = new List<string> { initialWord };
+                return returnList;
         }
         
         private List<int> NumberOfDivisible(List<string> words)
@@ -87,110 +200,54 @@ public class WordFusion : MonoBehaviour
                 for (var i = 0; i < last; ++i)
                 {
                         var r = Random.Range(i, count);
-                        var tmp = ts[i];
-                        ts[i] = ts[r];
-                        ts[r] = tmp;
-                }
-        }
-        
-        [Button]
-        private void TestDivisible()
-        {
-                List<int> test = NumberOfDivisible(testList);
-                string printing = "";
-                foreach (int nmb in test)
-                {
-                        printing += " , " + nmb;
-                }
-                Debug.Log(printing);
-        }
-        [Button]
-        private void TestShuffle()
-        {
-                
-                List<string> test = testList;
-                Shuffle(test);
-                string printing = "";
-                foreach (string nmb in test)
-                {
-                        printing += " , " + nmb;
-                }
-                Debug.Log(printing);
-        }
-        [Button]
-        private void TestSplit()
-        {
-                List<string> words = testList;
-                List<int> indexs = NumberOfDivisible(words);
-                Shuffle(indexs);
-                
-                for (int y = 0; y < indexs.Count; y++)
-                {
-                        int offset = 0;
-                        for (int i = 0; i < y; i++)
-                        {
-                                if (indexs[i] < indexs[y])
-                                {
-                                        offset++;
-                                }
-                        }
-                        
-                        string split = words[indexs[y] + offset];
-                        List<string> start = new List<string>();
-                        List<string> end = new List<string>();
-
-                        for (int i = 0; i < words.Count; i++)
-                        {
-                                if (i < indexs[y] + offset)
-                                {
-                                        start.Add(words[i]);
-                                }
-                                else if (i > indexs[y] + offset)
-                                {
-                                        end.Add(words[i]);
-                                }
-                        }
-                        List<string> middle = new List<string>();
-                        middle.Add(split.Substring(0, split.Length/ 2));
-                        middle.Add(split.Substring(split.Length/ 2));
-                        
-                        
-                        words.Clear();
-                        words.AddRange(start);
-                        words.AddRange(middle);
-                        words.AddRange(end);
-                        
-                        
-                        string printing = "";
-                        foreach (string letter in words)
-                        {
-                                printing += " , " + letter;
-                        }
-                        Debug.Log(printing);
+                        (ts[i], ts[r]) = (ts[r], ts[i]);
                 }
         }
         
         [Button]
         private void PrintStack()
         {
-                string printing = "";
-                foreach (List<string> printstack in finalStack)
+                foreach(Stack<List<string>> finalStack in _stackList)
                 {
-                        printing = "";
-                        foreach (string letter in printstack)
+                        foreach (List<string> printStack in finalStack)
+                        {
+                                var printing = "";
+                                foreach (string letter in printStack)
+                                {
+                                        printing += " , " + letter;
+                                }
+
+                                Debug.Log(printing);
+                        }
+                }
+        }
+
+        [Button]
+        private void PrintQueue()
+        {
+                foreach (List<string> list in finalQueue)
+                {
+                        string printing = "";
+                        foreach (string letter in list)
                         {
                                 printing += " , " + letter;
                         }
                         Debug.Log(printing);
                 }
-                
-                print(NumberOfDivisible(finalStack.Peek()).Count);
         }
-
+        
+        
         [Button]
         private void GlobalTest()
         {
-                GenerateStack(testWord);
-                PrintStack();
+                print(GenerateListStack(testWord));
+                //PrintStack();
+                print("Count : " + _stackList.Count);
+                Combine();
+        }
+        [Button]
+        private void BigSpookyTest()
+        {
+                InitiateKeys(testWord, testWord2);
         }
 }

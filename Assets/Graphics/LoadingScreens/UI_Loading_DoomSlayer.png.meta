@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 128
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -114,7 +114,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 1200
         width: 800
         height: 600
       alignment: 0
@@ -136,7 +136,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 800
-        y: 0
+        y: 1200
         width: 800
         height: 600
       alignment: 0
@@ -158,7 +158,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1600
-        y: 0
+        y: 1200
         width: 800
         height: 600
       alignment: 0
@@ -180,7 +180,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2400
-        y: 0
+        y: 1200
         width: 800
         height: 600
       alignment: 0
@@ -201,8 +201,8 @@ TextureImporter:
       name: UI_Loading_DoomSlayer_4
       rect:
         serializedVersion: 2
-        x: 3200
-        y: 0
+        x: 0
+        y: 600
         width: 800
         height: 600
       alignment: 0
@@ -223,8 +223,8 @@ TextureImporter:
       name: UI_Loading_DoomSlayer_5
       rect:
         serializedVersion: 2
-        x: 4000
-        y: 0
+        x: 800
+        y: 600
         width: 800
         height: 600
       alignment: 0
@@ -245,8 +245,8 @@ TextureImporter:
       name: UI_Loading_DoomSlayer_6
       rect:
         serializedVersion: 2
-        x: 4800
-        y: 0
+        x: 1600
+        y: 600
         width: 800
         height: 600
       alignment: 0
@@ -267,8 +267,8 @@ TextureImporter:
       name: UI_Loading_DoomSlayer_7
       rect:
         serializedVersion: 2
-        x: 5600
-        y: 0
+        x: 2400
+        y: 600
         width: 800
         height: 600
       alignment: 0
@@ -289,7 +289,7 @@ TextureImporter:
       name: UI_Loading_DoomSlayer_8
       rect:
         serializedVersion: 2
-        x: 6400
+        x: 0
         y: 0
         width: 800
         height: 600
@@ -311,7 +311,7 @@ TextureImporter:
       name: UI_Loading_DoomSlayer_9
       rect:
         serializedVersion: 2
-        x: 7200
+        x: 800
         y: 0
         width: 800
         height: 600
@@ -333,7 +333,7 @@ TextureImporter:
       name: UI_Loading_DoomSlayer_10
       rect:
         serializedVersion: 2
-        x: 8000
+        x: 1600
         y: 0
         width: 800
         height: 600
@@ -347,28 +347,6 @@ TextureImporter:
       bones: []
       spriteID: 53d4582c55c495f4b87391d2fdaca106
       internalID: -1169680052
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI_Loading_DoomSlayer_11
-      rect:
-        serializedVersion: 2
-        x: 8800
-        y: 0
-        width: 800
-        height: 600
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 40cc463cc3a82444f8d8f1ca9eee3f3a
-      internalID: 1584563666
       vertices: []
       indices: 
       edges: []
@@ -387,12 +365,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":12.0,"y":1.0},"gridSpriteSize":{"x":800.0,"y":600.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":3.0},"gridSpriteSize":{"x":800.0,"y":600.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       UI_Loading_DoomSlayer_0: 1686326963
       UI_Loading_DoomSlayer_1: -907095637
       UI_Loading_DoomSlayer_10: -1169680052
-      UI_Loading_DoomSlayer_11: 1584563666
       UI_Loading_DoomSlayer_2: 1973392600
       UI_Loading_DoomSlayer_3: -950748661
       UI_Loading_DoomSlayer_4: 1861250915

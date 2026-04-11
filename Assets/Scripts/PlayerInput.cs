@@ -15,9 +15,15 @@ public class PlayerInput : MonoBehaviour
 
     [Header("Gun")]
     [SerializeField] GameObject projectilePrefab;
-    [SerializeField] Sprite[] gunSprites = new Sprite[8]; // Directions begin from right and go counter-clockwise
     [SerializeField] Transform gunPivot;
     [SerializeField] Transform gunTip;
+
+    [Header("Graphics")]
+    [SerializeField] Sprite[] taskManagerSprites = new Sprite[8];
+    [SerializeField] Sprite[] gunSprites = new Sprite[8]; // Directions begin from right and go counter-clockwise
+    [SerializeField] SpriteRenderer taskManagerSpriteRenderer;
+    [SerializeField] SpriteRenderer gunSpriteRenderer;
+
 
     string _alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     bool freeze;
@@ -114,11 +120,11 @@ public class PlayerInput : MonoBehaviour
     void TurnGunTowardsEnemy()
     {
         Vector3 target = EnemyManager.targetedEnemy.transform.position;
-        Vector3 dir = (target - transform.position).normalized;
+        Vector3 dir = (target - gunTip.position).normalized;
 
         // Get exact angle towards enemy
         float angle = Vector3.Angle(Vector3.right, dir);
-        angle = target.y < transform.position.y ? -angle : angle;
+        angle = target.y < gunTip.position.y ? -angle : angle;
 
         // Finding approximated angle
         Directions gunDir;
@@ -132,9 +138,21 @@ public class PlayerInput : MonoBehaviour
             gunDir = angle > -22.5f ? Directions.Right : angle > -67.5f ? Directions.DownRight : angle > -112.5f ? Directions.Down : 
                      angle > -157.5f ? Directions.LeftDown : Directions.Left;
         }
-        //Debug.Log(gunDir.ToString());
+        // Show corresponding sprites
+        int dirIndex = Array.IndexOf(Enum.GetValues(typeof(Directions)), gunDir);
+        taskManagerSpriteRenderer.sprite = taskManagerSprites[dirIndex];
+        gunSpriteRenderer.sprite = gunSprites[dirIndex];
 
-        gunPivot.localEulerAngles = new Vector3(0, 0, angle);
+        // Offset gun
+        Vector2 gunOffsetPos = gunDir == Directions.Right ? new Vector2(.7f, 0) : gunDir == Directions.Left ? new Vector2(-.7f, 0) : 
+                               gunDir == Directions.Up ? new Vector2(.2f, .8f) : gunDir == Directions.Down ? new Vector2(-.2f, -.4f) : 
+                               gunDir == Directions.RightUp ? new Vector2(.5f, .5f) : gunDir == Directions.UpLeft ? new Vector2(-.3f, .3f) :
+                               gunDir == Directions.LeftDown ? new Vector2(-.5f, -.2f) : new Vector2(-.15f, -.3f); 
+        gunSpriteRenderer.sortingOrder = gunDir == Directions.Down || gunDir == Directions.LeftDown || gunDir == Directions.DownRight ? 2 : 1;
+        taskManagerSpriteRenderer.sortingOrder = 3 - gunSpriteRenderer.sortingOrder;
+        gunSpriteRenderer.transform.localPosition = gunOffsetPos;
+
+        // TODO: rotate gun
     }
 
     public void Fire()

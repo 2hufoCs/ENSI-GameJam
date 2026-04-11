@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+public enum Directions { Right = 0, RightUp = 45, Up = 90, UpLeft = 135, Left = 180, LeftDown = 225, Down = 270, DownRight = 315 }
+
 public class PlayerInput : MonoBehaviour
 {
     public static PlayerInput Instance { get; private set; }
@@ -13,6 +15,7 @@ public class PlayerInput : MonoBehaviour
 
     [Header("Gun")]
     [SerializeField] GameObject projectilePrefab;
+    [SerializeField] Sprite[] gunSprites = new Sprite[8]; // Directions begin from right and go counter-clockwise
     [SerializeField] Transform gunPivot;
     [SerializeField] Transform gunTip;
 
@@ -113,8 +116,23 @@ public class PlayerInput : MonoBehaviour
         Vector3 target = EnemyManager.targetedEnemy.transform.position;
         Vector3 dir = (target - transform.position).normalized;
 
+        // Get exact angle towards enemy
         float angle = Vector3.Angle(Vector3.right, dir);
         angle = target.y < transform.position.y ? -angle : angle;
+
+        // Finding approximated angle
+        Directions gunDir;
+        if (angle > 0)
+        {
+            gunDir = angle < 22.5f ? Directions.Right : angle < 67.5f ? Directions.RightUp : angle < 112.5f ? Directions.Up : 
+                     angle < 157.5f ? Directions.UpLeft : Directions.Left;
+        }
+        else
+        {
+            gunDir = angle > -22.5f ? Directions.Right : angle > -67.5f ? Directions.DownRight : angle > -112.5f ? Directions.Down : 
+                     angle > -157.5f ? Directions.LeftDown : Directions.Left;
+        }
+        Debug.Log(gunDir.ToString());
 
         gunPivot.localEulerAngles = new Vector3(0, 0, angle);
     }

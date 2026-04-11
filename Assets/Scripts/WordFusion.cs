@@ -9,13 +9,14 @@ public class WordFusion : MonoBehaviour
         [SerializeField]
         private List<string> testList =  new List<string>();
 
+        [SerializeField] private string testWord;
+
         private List<string> GenerateInitialList(string initialWord)
         {
                 List<string> returnList = new List<string>();
                 returnList.Add(initialWord);
                 return returnList;
         }
-
         
         public void GenerateStack(string initialWord)
         {
@@ -66,10 +67,31 @@ public class WordFusion : MonoBehaviour
                 }
         }
         
-        
-        
-        
-        
+        private List<int> NumberOfDivisible(List<string> words)
+        {
+                List<int> returnIndex = new List<int>();
+                for (int i = 0; i < words.Count ; i++)
+                {
+                        if (words[i].Length > 1)
+                        {
+                                returnIndex.Add(i);
+                        }
+                }
+                return returnIndex;
+        }
+
+        private void Shuffle<T>(IList<T> ts)
+        {
+                var count = ts.Count;
+                var last = count - 1;
+                for (var i = 0; i < last; ++i)
+                {
+                        var r = Random.Range(i, count);
+                        var tmp = ts[i];
+                        ts[i] = ts[r];
+                        ts[r] = tmp;
+                }
+        }
         
         [Button]
         private void TestDivisible()
@@ -165,29 +187,10 @@ public class WordFusion : MonoBehaviour
                 print(NumberOfDivisible(finalStack.Peek()).Count);
         }
 
-        private List<int> NumberOfDivisible(List<string> words)
+        [Button]
+        private void GlobalTest()
         {
-                List<int> returnIndex = new List<int>();
-                for (int i = 0; i < words.Count ; i++)
-                {
-                        if (words[i].Length > 1)
-                        {
-                                returnIndex.Add(i);
-                        }
-                }
-                return returnIndex;
-        }
-
-        private void Shuffle<T>(IList<T> ts)
-        {
-                var count = ts.Count;
-                var last = count - 1;
-                for (var i = 0; i < last; ++i)
-                {
-                        var r = Random.Range(i, count);
-                        var tmp = ts[i];
-                        ts[i] = ts[r];
-                        ts[r] = tmp;
-                }
+                GenerateStack(testWord);
+                PrintStack();
         }
 }

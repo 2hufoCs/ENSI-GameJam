@@ -144,10 +144,10 @@ public class PlayerInput : MonoBehaviour
         gunSpriteRenderer.sprite = gunSprites[dirIndex];
 
         // Offset gun
-        Vector2 gunOffsetPos = gunDir == Directions.Right ? new Vector2(.7f, 0) : gunDir == Directions.Left ? new Vector2(-.7f, 0) : 
-                               gunDir == Directions.Up ? new Vector2(.2f, .8f) : gunDir == Directions.Down ? new Vector2(-.2f, -.4f) : 
-                               gunDir == Directions.RightUp ? new Vector2(.5f, .5f) : gunDir == Directions.UpLeft ? new Vector2(-.3f, .3f) :
-                               gunDir == Directions.LeftDown ? new Vector2(-.5f, -.2f) : new Vector2(-.15f, -.3f); 
+        Vector2 gunOffsetPos = gunDir == Directions.Right ? new Vector2(.8f, -.2f) : gunDir == Directions.Left ? new Vector2(-.8f, 0) : 
+                               gunDir == Directions.Up ? new Vector2(.6f, .65f) : gunDir == Directions.Down ? new Vector2(-.3f, -.55f) : 
+                               gunDir == Directions.RightUp ? new Vector2(.3f, .35f) : gunDir == Directions.UpLeft ? new Vector2(-.3f, .55f) :
+                               gunDir == Directions.LeftDown ? new Vector2(-.8f, -.05f) : new Vector2(.6f, -.1f); 
         gunSpriteRenderer.sortingOrder = gunDir == Directions.Down || gunDir == Directions.LeftDown || gunDir == Directions.DownRight ? 2 : 1;
         taskManagerSpriteRenderer.sortingOrder = 3 - gunSpriteRenderer.sortingOrder;
         gunSpriteRenderer.transform.localPosition = gunOffsetPos;

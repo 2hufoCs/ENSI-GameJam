@@ -7,7 +7,7 @@ using NaughtyAttributes;
 public class TextRender : MonoBehaviour
 {
     [SerializeField] private List<TextRenderCharacters> letters;
-    [SerializeField] private string inputText;
+    public string inputText;
     [SerializeField] private float fontSize;
     [SerializeField] private float spaceSize;
     private Stack<GameObject> childrens = new Stack<GameObject>();

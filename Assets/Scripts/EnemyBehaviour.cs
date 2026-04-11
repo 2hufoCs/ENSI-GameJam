@@ -61,6 +61,13 @@ public class EnemyBehaviour : MonoBehaviour
 
     public bool CheckRequirements(string heldKeys)
     {
+        // Null error? (must debug)
+        if (_keysPressed == null)
+        {
+            Debug.Log("keys pressed bool list is null, don't check requirements");
+            return false;
+        }
+
         // Reset pressed keys
         for (int i = 0; i < _keysPressed.Length; i++)
         {

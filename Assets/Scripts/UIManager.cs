@@ -6,6 +6,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] Image healthBar;
     [SerializeField] TextMeshProUGUI targetWord;
+    [SerializeField] TextMeshProUGUI heldKeysTxt;
 
     [Header("Panels")]
     [SerializeField] RectTransform mainPanel;
@@ -30,6 +31,9 @@ public class UIManager : MonoBehaviour
         {
             targetWord.text = EnemyManager.targetedEnemy.keysRequirements;          
         }
+
+        // Show held keys
+        heldKeysTxt.text = PlayerInput.Instance.ListToString(PlayerInput.Instance.keysHeld);
     }
 
     void DecreaseHealth(float normalizedHealth)

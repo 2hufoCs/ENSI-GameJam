@@ -58,13 +58,13 @@ public class EnemyManager : MonoBehaviour
 
         currentWave++;
 
-        Debug.Log("starting wave " + currentWave);
+        //Debug.Log("starting wave " + currentWave);
 
         _enemiesLeft = (int)_enemiesPerWave.Evaluate(currentWave);
         _spawnInterval = _spawnIntervalPerWave.Evaluate(currentWave);
         _enemyMovespeed = _enemyMovespeedPerWave.Evaluate(currentWave);
 
-        Debug.Log($"enemies: {_enemiesLeft}, spawn interval: {_spawnInterval}");
+        //Debug.Log($"enemies: {_enemiesLeft}, spawn interval: {_spawnInterval}");
 
         SpawnEnemy();
     }

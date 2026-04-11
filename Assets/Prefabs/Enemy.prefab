@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 6065835637432021389}
   m_Layer: 3
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -190,6 +190,7 @@ MonoBehaviour:
   keysRequirements: 
   _keysRequirementsTxt: {fileID: 2352189673619658494}
   isActive: 1
+  freeze: 0
 --- !u!212 &4720732542513083826
 SpriteRenderer:
   serializedVersion: 2

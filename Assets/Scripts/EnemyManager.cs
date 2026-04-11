@@ -32,7 +32,7 @@ public class EnemyManager : MonoBehaviour
 
     void Start()
     {
-        wordFusion.GenerateStack(baseWord);
+        //wordFusion.GenerateStack(baseWord);
         StartWave();   
     }
 
@@ -49,12 +49,12 @@ public class EnemyManager : MonoBehaviour
     void StartWave()
     {
         // Win if word has been fusioned
-        if (wordFusion.finalStack.Count == 0)
+        /*if (wordFusion.finalStack.Count == 0)
         {
             Win();
             return;
         }
-        possibleKeyRequirements = wordFusion.finalStack.Pop();
+        possibleKeyRequirements = wordFusion.finalStack.Pop();*/
 
         currentWave++;
 

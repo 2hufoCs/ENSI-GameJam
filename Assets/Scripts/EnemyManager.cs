@@ -19,6 +19,16 @@ public class EnemyManager : MonoBehaviour
         SpawnEnemy();
     }
 
+    void OnEnable()
+    {
+        Actions.OnGameOver += FreezeEnemies;
+    }
+
+    void OnDisable()
+    {
+        Actions.OnGameOver -= FreezeEnemies;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -43,6 +53,7 @@ public class EnemyManager : MonoBehaviour
     {
         if (enemies.Count == 0) return null;
 
+        EnemyBehaviour previousTargetedEnemy = targetedEnemy;
         EnemyBehaviour closestEnemy = enemies[0];
         float minDist = Mathf.Infinity;
         foreach (EnemyBehaviour enemy in enemies)
@@ -56,7 +67,16 @@ public class EnemyManager : MonoBehaviour
         }
 
         // Change enemy color for debug
+        if (previousTargetedEnemy && previousTargetedEnemy != closestEnemy) previousTargetedEnemy.GetComponent<SpriteRenderer>().color = Color.black;
         closestEnemy.GetComponent<SpriteRenderer>().color = Color.blue;
         return closestEnemy;
+    }
+
+    void FreezeEnemies()
+    {
+        foreach (EnemyBehaviour enemy in enemies)
+        {
+            enemy.isActive = false;
+        }
     }
 }

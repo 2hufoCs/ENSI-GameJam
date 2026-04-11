@@ -7,11 +7,12 @@ public class EnemyBehaviour : MonoBehaviour
 {
     Transform target;
     [SerializeField] float _moveSpeed;
+    [SerializeField] float _damage;
     [SerializeField] string _keysRequirements;
     [SerializeField] TextMeshProUGUI _keysRequirementsTxt;
     bool[] _keysPressed;
 
-    bool isActive = true;
+    [SerializeField] public bool isActive = true;
     bool isTargeted;
 
     void Awake()
@@ -46,10 +47,13 @@ public class EnemyBehaviour : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
+        // Inflict damage to player
         if (col.CompareTag("Player"))
         {
-            Debug.Log("hit player");
+            PlayerInput.Instance.TakeDamage(_damage);
+
             isActive = false;
+            Destroy(gameObject);
         }
     }
 

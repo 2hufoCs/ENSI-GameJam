@@ -8,6 +8,11 @@ public class PlayerInput : MonoBehaviour
     public static PlayerInput Instance { get; private set; }
     public List<string> keysHeld = new();
 
+    [SerializeField] float maxHealth = 100;
+    float currentHealth; 
+
+    [SerializeField] Transform gunPivot;
+
     string _alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     void Awake()
@@ -16,9 +21,17 @@ public class PlayerInput : MonoBehaviour
         Instance = this;
     }
 
+    void Start()
+    {
+        currentHealth = maxHealth;
+    }
+
     void Update()
     {
         GetKeysHeld();
+
+        // Turn gun towards closest enemy
+        if (EnemyManager.targetedEnemy) TurnGunTowardsEnemy();
     }
 
     void GetKeysHeld()
@@ -42,13 +55,28 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-/*
-    public void OnKeyPressed(InputAction.CallbackContext context)
+    public void TakeDamage(float damage)
     {
-        if (context.performed)
+        Debug.Log("hit player, health is now " + currentHealth);
+        currentHealth -= damage;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        // Gameover if health reaches 0
+        if (currentHealth <= 0)
         {
-            
+            Debug.Log("game over");
+            Actions.OnGameOver();
         }
     }
-*/
+
+    void TurnGunTowardsEnemy()
+    {
+        Vector3 target = EnemyManager.targetedEnemy.transform.position;
+        Vector3 dir = (target - transform.position).normalized;
+
+        float angle = Vector3.Angle(Vector3.right, dir);
+        angle = target.y < transform.position.y ? -angle : angle;
+
+        gunPivot.localEulerAngles = new Vector3(0, 0, angle);
+    }
 }

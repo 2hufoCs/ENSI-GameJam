@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1244330530625366810}
   - component: {fileID: 612351193784978967}
   - component: {fileID: 2352189673619658494}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: KeysRequirements
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 4720732542513083826}
   - component: {fileID: 2062170846675238701}
   - component: {fileID: 6065835637432021389}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,9 +185,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 883d2784904177a439c01a8ca619237d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBehaviour
-  _moveSpeed: 0.75
+  _moveSpeed: 1.25
+  _damage: 15
   _keysRequirements: ERT
   _keysRequirementsTxt: {fileID: 2352189673619658494}
+  isActive: 1
 --- !u!212 &4720732542513083826
 SpriteRenderer:
   serializedVersion: 2
@@ -307,7 +309,7 @@ GameObject:
   - component: {fileID: 8333387720546226951}
   - component: {fileID: 5558148334724328374}
   - component: {fileID: 1033409239178250332}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

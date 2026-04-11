@@ -11,7 +11,10 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] float maxHealth = 100;
     float currentHealth; 
 
+    [Header("Gun")]
+    [SerializeField] GameObject projectilePrefab;
     [SerializeField] Transform gunPivot;
+    [SerializeField] Transform gunTip;
 
     string _alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     bool freeze;
@@ -43,6 +46,12 @@ public class PlayerInput : MonoBehaviour
 
         GetKeysHeld();
 
+        // Only fire when requirements are met
+        if (EnemyManager.targetedEnemy.CheckRequirements(ListToString(keysHeld)))
+        {
+            Fire();
+        }
+
         // Turn gun towards closest enemy
         if (EnemyManager.targetedEnemy) TurnGunTowardsEnemy();
     }
@@ -73,11 +82,21 @@ public class PlayerInput : MonoBehaviour
         freeze = true;
     }
 
+    public string ListToString(List<string> stringList)
+    {
+        string finalString = "";
+        foreach (string str in stringList)
+        {
+            finalString += str;
+        }
+        return finalString;
+    }
+
     public void TakeDamage(float damage)
     {
-        Debug.Log("hit player, health is now " + currentHealth);
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        Debug.Log("hit player, health is now " + currentHealth);
 
         Actions.OnPlayerHit(currentHealth / maxHealth);
 
@@ -98,5 +117,20 @@ public class PlayerInput : MonoBehaviour
         angle = target.y < transform.position.y ? -angle : angle;
 
         gunPivot.localEulerAngles = new Vector3(0, 0, angle);
+    }
+
+    public void Fire()
+    {
+        GameObject newProjectile = Instantiate(projectilePrefab, gunTip.position, Quaternion.identity);
+
+        // Set initial direction
+        Vector3 target = EnemyManager.targetedEnemy.transform.position;
+        Vector3 dir = (target - transform.position).normalized;
+
+        newProjectile.GetComponent<Projectile>().initialDir = dir;
+        newProjectile.GetComponent<Projectile>().initialHeldKeys = ListToString(keysHeld);
+
+        // Reset held keys
+        keysHeld = new();
     }
 }

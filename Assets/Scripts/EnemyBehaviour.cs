@@ -39,7 +39,7 @@ public class EnemyBehaviour : MonoBehaviour
         if (freeze) return;
 
         // Destroy enemy when keys requirements are met
-        if (EnemyManager.targetedEnemy == this && CheckRequirements()) Die();
+        // if (EnemyManager.targetedEnemy == this && CheckRequirements()) Die();
 
         if (!isActive) return;
 
@@ -59,7 +59,7 @@ public class EnemyBehaviour : MonoBehaviour
         }
     }
 
-    bool CheckRequirements()
+    public bool CheckRequirements(string heldKeys)
     {
         // Reset pressed keys
         for (int i = 0; i < _keysPressed.Length; i++)
@@ -70,7 +70,7 @@ public class EnemyBehaviour : MonoBehaviour
         // Assign true for held keys
         foreach (char _key in keysRequirements)
         {
-            if (!PlayerInput.Instance.keysHeld.Contains(_key.ToString()))
+            if (!heldKeys.Contains(_key.ToString()))
             {
                 return false;
             }
@@ -92,7 +92,13 @@ public class EnemyBehaviour : MonoBehaviour
         // return !_keysPressed.Contains(false);
     }
 
-    void Die()
+    public void Hit(string heldKeys)
+    {
+        //Debug.Log($"enemy requirements: {keysRequirements}, keys held: {heldKeys}");
+        if (CheckRequirements(heldKeys)) Die();
+    }
+
+    public void Die()
     {
         PlayerInput.Instance.keysHeld = new();
         Destroy(gameObject);

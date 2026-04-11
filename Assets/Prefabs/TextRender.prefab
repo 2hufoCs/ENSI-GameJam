@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7451421038624846617
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3105462415369484657}
+  - component: {fileID: 2466474560412700974}
+  - component: {fileID: 1843786544848566117}
+  m_Layer: 5
+  m_Name: TextRender
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3105462415369484657
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7451421038624846617}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2466474560412700974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7451421038624846617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.HorizontalLayoutGroup
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 4
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
+--- !u!114 &1843786544848566117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7451421038624846617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec760aed6324cca4792eea359ae4b954, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  letters:
+  - letter: 32
+    sprite: {fileID: 0}
+  - letter: 65
+    sprite: {fileID: 1367464791, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
+  - letter: 66
+    sprite: {fileID: 1373017450, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
+  - letter: 67
+    sprite: {fileID: -1710067782, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
+  - letter: 68
+    sprite: {fileID: 443957594, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
+  - letter: 69
+    sprite: {fileID: -2145776018, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
+  - letter: 70
+    sprite: {fileID: 1527342004, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
+  - letter: 71
+    sprite: {fileID: 1013204897, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
+  - letter: 72
+    sprite: {fileID: 1104364273, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
+  - letter: 73
+    sprite: {fileID: 681766999, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
+  - letter: 74
+    sprite: {fileID: -24661129, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
+  - letter: 75
+    sprite: {fileID: -1819362271, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
+  - letter: 76
+    sprite: {fileID: 180596043, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
+  - letter: 77
+    sprite: {fileID: 1715968468, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
+  - letter: 78
+    sprite: {fileID: 1325740629, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
+  - letter: 79
+    sprite: {fileID: 1611483672, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
+  - letter: 80
+    sprite: {fileID: -1770561138, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
+  - letter: 81
+    sprite: {fileID: 1462958437, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
+  - letter: 82
+    sprite: {fileID: 1673671803, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
+  - letter: 83
+    sprite: {fileID: -323810878, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
+  - letter: 84
+    sprite: {fileID: -707486800, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
+  - letter: 85
+    sprite: {fileID: 1456602474, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
+  - letter: 86
+    sprite: {fileID: 2080803289, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
+  - letter: 87
+    sprite: {fileID: -1769871634, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
+  - letter: 88
+    sprite: {fileID: -2104550209, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
+  - letter: 89
+    sprite: {fileID: -897687130, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
+  - letter: 90
+    sprite: {fileID: -595220279, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
+  inputText: JE SUIS LA
+  fontSize: 2
+  spaceSize: 10

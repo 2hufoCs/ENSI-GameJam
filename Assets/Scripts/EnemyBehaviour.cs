@@ -1,33 +1,47 @@
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    [SerializeField] Transform target;
-    [SerializeField] float _moveSpeed;
-    [SerializeField] string _keysRequirements;
-    [SerializeField] bool[] _keysPressed;
+    Transform target;
+    public float _moveSpeed;
+    [SerializeField] float _damage;
+    public string keysRequirements;
+    [SerializeField] TextMeshProUGUI _keysRequirementsTxt;
+    bool[] _keysPressed;
 
-    bool isActive = true;
+    [HideInInspector] public bool isActive = true;
+    [HideInInspector] public bool freeze;
 
     void Awake()
     {
         EnemyManager.enemies.Add(this);
     }
 
+    void OnDestroy()
+    {
+        EnemyManager.enemies.Remove(this);
+    }
+
     void Start()
     {
-        _keysPressed = new bool[_keysRequirements.Length];
+        _keysPressed = new bool[keysRequirements.Length];
+        target = PlayerInput.Instance.gameObject.transform;
+
+        _keysRequirementsTxt.text = keysRequirements;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!isActive) return;
+        if (freeze) return;
 
         // Destroy enemy when keys requirements are met
-        if (CheckRequirements()) Die();
+        if (EnemyManager.targetedEnemy == this && CheckRequirements()) Die();
+
+        if (!isActive) return;
 
         // Move enemy towards center
         transform.Translate(_moveSpeed * Time.deltaTime * (target.position - transform.position).normalized);
@@ -35,10 +49,13 @@ public class EnemyBehaviour : MonoBehaviour
 
     void OnTriggerEnter(Collider col)
     {
+        // Inflict damage to player
         if (col.CompareTag("Player"))
         {
-            Debug.Log("hit player");
+            PlayerInput.Instance.TakeDamage(_damage);
+
             isActive = false;
+            Destroy(gameObject);
         }
     }
 
@@ -51,7 +68,7 @@ public class EnemyBehaviour : MonoBehaviour
         }
 
         // Assign true for held keys
-        foreach (char _key in _keysRequirements)
+        foreach (char _key in keysRequirements)
         {
             if (!PlayerInput.Instance.keysHeld.Contains(_key.ToString()))
             {
@@ -77,6 +94,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     void Die()
     {
+        PlayerInput.Instance.keysHeld = new();
         Destroy(gameObject);
     }
 }

@@ -5,15 +5,20 @@ using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour
 {
     [SerializeField] Transform target;
-    [SerializeField] float moveSpeed;
-    [SerializeField] List<string> keysRequirements = new();
-    [SerializeField] bool[] keysPressed;
+    [SerializeField] float _moveSpeed;
+    [SerializeField] string _keysRequirements;
+    [SerializeField] bool[] _keysPressed;
 
     bool isActive = true;
 
+    void Awake()
+    {
+        EnemyManager.enemies.Add(this);
+    }
+
     void Start()
     {
-        keysPressed = new bool[keysRequirements.Count];
+        _keysPressed = new bool[_keysRequirements.Length];
     }
 
     // Update is called once per frame
@@ -25,7 +30,7 @@ public class EnemyBehaviour : MonoBehaviour
         if (CheckRequirements()) Die();
 
         // Move enemy towards center
-        transform.Translate(moveSpeed * Time.deltaTime * (target.position - transform.position).normalized);
+        transform.Translate(_moveSpeed * Time.deltaTime * (target.position - transform.position).normalized);
     }
 
     void OnTriggerEnter(Collider col)
@@ -40,23 +45,34 @@ public class EnemyBehaviour : MonoBehaviour
     bool CheckRequirements()
     {
         // Reset pressed keys
-        for (int i = 0; i < keysPressed.Length; i++)
+        for (int i = 0; i < _keysPressed.Length; i++)
         {
-            keysPressed[i] = false;
+            _keysPressed[i] = false;
         }
 
         // Assign true for held keys
-        foreach (string keys in PlayerInput.Instance.keysHeld)
+        foreach (char _key in _keysRequirements)
         {
-            if (keysRequirements.Contains(keys))
+            if (!PlayerInput.Instance.keysHeld.Contains(_key.ToString()))
             {
-                int keyIndex = keysRequirements.IndexOf(keys);
-                keysPressed[keyIndex] = true;
+                return false;
             }
         }
+        return true;
 
-        // If all keys are held, return true
-        return !keysPressed.Contains(false);
+
+        // // Assign true for held keys
+        // foreach (string keys in PlayerInput.Instance.keysHeld)
+        // {
+        //     if (_keysRequirements.Contains(keys))
+        //     {
+        //         int keyIndex = _keysRequirements.IndexOf(keys);
+        //         _keysPressed[keyIndex] = true;
+        //     }
+        // }
+
+        // // If all keys are held, return true
+        // return !_keysPressed.Contains(false);
     }
 
     void Die()

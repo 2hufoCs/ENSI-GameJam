@@ -8,7 +8,7 @@ public class PlayerInput : MonoBehaviour
     public static PlayerInput Instance { get; private set; }
     public List<string> keysHeld = new();
 
-    string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    string _alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     void Awake()
     {
@@ -23,7 +23,7 @@ public class PlayerInput : MonoBehaviour
 
     void GetKeysHeld()
     {
-        foreach (char c in alphabet)
+        foreach (char c in _alphabet)
         {
             string letter = c.ToString();
             KeyCode currentKeyCode = (KeyCode)System.Enum.Parse(typeof(KeyCode), letter);

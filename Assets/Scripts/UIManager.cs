@@ -3,6 +3,9 @@ using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
+using System.Data;
+using Unity.VisualScripting.Antlr3.Runtime.Tree;
 
 public class UIManager : MonoBehaviour
 {
@@ -12,16 +15,21 @@ public class UIManager : MonoBehaviour
 
     [Header("Panels")]
     [SerializeField] RectTransform mainPanel;
+    [SerializeField] RectTransform mainPanelBg;
     [SerializeField] RectTransform ramPanel;
     [SerializeField] RectTransform targetWordPanel;
     [SerializeField] AnimationCurve panelMoveX;
     [SerializeField] AnimationCurve panelMoveY;
+    [SerializeField] float panelMoveStrength;
     List<RectTransform> panels;
-    float panelTimer;
+    List<Vector2> initialPanelPositions; 
+    float panelTimerX;
+    float panelTimerY = .75f;
 
     void Start()
     {
-        panels = new() { mainPanel, ramPanel, targetWordPanel };
+        panels = new() { mainPanel, mainPanelBg, ramPanel, targetWordPanel };
+        initialPanelPositions = new() { mainPanel.anchoredPosition, mainPanelBg.anchoredPosition, ramPanel.anchoredPosition, targetWordPanel.anchoredPosition };
     }
 
 
@@ -48,14 +56,30 @@ public class UIManager : MonoBehaviour
         // Show held keys
         heldKeysTxt.text = PlayerInput.Instance.ListToString(PlayerInput.Instance.keysHeld);
 
-        //AnimatePanels();
+        AnimatePanels();
     }
 
     void AnimatePanels()
     {
-        panelTimer += Time.deltaTime;
+        panelTimerX += Time.deltaTime;
+        panelTimerY += Time.deltaTime;
+        if (panelTimerX > panelMoveX.keys[^1].time) panelTimerX -= panelMoveX.keys[^1].time;
+        if (panelTimerY > panelMoveY.keys[^1].time) panelTimerY -= panelMoveY.keys[^1].time;
 
+        float offset = 0;
 
+        for (int i = 0; i < panels.Count; i++)
+        {
+            float offsetTimerX = panelTimerX + offset;
+            float offsetTimerY = panelTimerY + offset;
+            if (offsetTimerX > panelMoveX.keys[^1].time) offsetTimerX -= panelMoveX.keys[^1].time;
+            if (offsetTimerY > panelMoveY.keys[^1].time) offsetTimerY -= panelMoveY.keys[^1].time;
+
+            Vector2 diff = new Vector2(panelMoveX.Evaluate(offsetTimerX), panelMoveY.Evaluate(offsetTimerY)) * panelMoveStrength;
+            panels[i].anchoredPosition = initialPanelPositions[i] + diff;
+
+            if (i > 0) offset += .8f;
+        }
     }
 
     void DecreaseHealth(float normalizedHealth)

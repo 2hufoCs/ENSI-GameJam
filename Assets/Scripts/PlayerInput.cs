@@ -132,7 +132,7 @@ public class PlayerInput : MonoBehaviour
             gunDir = angle > -22.5f ? Directions.Right : angle > -67.5f ? Directions.DownRight : angle > -112.5f ? Directions.Down : 
                      angle > -157.5f ? Directions.LeftDown : Directions.Left;
         }
-        Debug.Log(gunDir.ToString());
+        //Debug.Log(gunDir.ToString());
 
         gunPivot.localEulerAngles = new Vector3(0, 0, angle);
     }

@@ -148,8 +148,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4468758b281cdfd45bfaf746e7137064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WordFusion
+  initialWord: LOWEN
   testList:
-  - Lowen
+  - ev
+  - e
+  - evve
+  - ev
 --- !u!4 &1893795408
 Transform:
   m_ObjectHideFlags: 0

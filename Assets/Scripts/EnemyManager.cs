@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    public static List<EnemyBehaviour> enemies;
+    public static List<EnemyBehaviour> enemies = new();
+    public static EnemyBehaviour targetedEnemy;
 
     [SerializeField] float _spawnInterval;
     float _spawnIntervalTimer;
@@ -26,6 +27,8 @@ public class EnemyManager : MonoBehaviour
         {
             SpawnEnemy();
         }
+
+        targetedEnemy = GetClosestEnemy();
     }
 
     void SpawnEnemy()
@@ -34,5 +37,26 @@ public class EnemyManager : MonoBehaviour
         GameObject newEnemy = Instantiate(enemyPrefab, randomSpawnpoint.position, Quaternion.identity, enemyList);
 
         _spawnIntervalTimer = 0;
+    }
+
+    public EnemyBehaviour GetClosestEnemy()
+    {
+        if (enemies.Count == 0) return null;
+
+        EnemyBehaviour closestEnemy = enemies[0];
+        float minDist = Mathf.Infinity;
+        foreach (EnemyBehaviour enemy in enemies)
+        {
+            float newDist = (PlayerInput.Instance.transform.position - enemy.transform.position).magnitude;
+            if (newDist < minDist)
+            {
+                minDist = newDist;
+                closestEnemy = enemy;
+            }
+        }
+
+        // Change enemy color for debug
+        closestEnemy.GetComponent<SpriteRenderer>().color = Color.blue;
+        return closestEnemy;
     }
 }

@@ -1,33 +1,44 @@
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    [SerializeField] Transform target;
+    Transform target;
     [SerializeField] float _moveSpeed;
     [SerializeField] string _keysRequirements;
-    [SerializeField] bool[] _keysPressed;
+    [SerializeField] TextMeshProUGUI _keysRequirementsTxt;
+    bool[] _keysPressed;
 
     bool isActive = true;
+    bool isTargeted;
 
     void Awake()
     {
         EnemyManager.enemies.Add(this);
     }
 
+    void OnDestroy()
+    {
+        EnemyManager.enemies.Remove(this);
+    }
+
     void Start()
     {
         _keysPressed = new bool[_keysRequirements.Length];
+        target = PlayerInput.Instance.gameObject.transform;
+
+        _keysRequirementsTxt.text = _keysRequirements;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!isActive) return;
-
         // Destroy enemy when keys requirements are met
-        if (CheckRequirements()) Die();
+        if (EnemyManager.targetedEnemy == this && CheckRequirements()) Die();
+
+        if (!isActive) return;
 
         // Move enemy towards center
         transform.Translate(_moveSpeed * Time.deltaTime * (target.position - transform.position).normalized);
@@ -77,6 +88,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     void Die()
     {
+        PlayerInput.Instance.keysHeld = new();
         Destroy(gameObject);
     }
 }

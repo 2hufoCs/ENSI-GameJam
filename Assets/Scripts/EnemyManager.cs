@@ -38,12 +38,12 @@ public class EnemyManager : MonoBehaviour
 
     void OnEnable()
     {
-        Actions.OnGameOver += FreezeEnemies;
+        Actions.OnPlayerDie += FreezeEnemies;
     }
 
     void OnDisable()
     {
-        Actions.OnGameOver -= FreezeEnemies;
+        Actions.OnPlayerDie -= FreezeEnemies;
     }
 
     void StartWave()
@@ -132,6 +132,7 @@ public class EnemyManager : MonoBehaviour
         foreach (EnemyBehaviour enemy in enemies)
         {
             enemy.isActive = false;
+            enemy.freeze = true;
         }
     }
 

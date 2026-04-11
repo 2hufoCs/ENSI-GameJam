@@ -14,11 +14,22 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] Transform gunPivot;
 
     string _alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    bool freeze;
 
     void Awake()
     {
         if (Instance != null && Instance != this) Destroy(this);
         Instance = this;
+    }
+
+    void OnEnable()
+    {
+        Actions.OnPlayerDie += FreezePlayer;
+    }
+
+    void OnDisable()
+    {
+        Actions.OnPlayerDie -= FreezePlayer;
     }
 
     void Start()
@@ -28,6 +39,8 @@ public class PlayerInput : MonoBehaviour
 
     void Update()
     {
+        if (freeze) return;
+
         GetKeysHeld();
 
         // Turn gun towards closest enemy
@@ -55,17 +68,24 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
+    void FreezePlayer()
+    {
+        freeze = true;
+    }
+
     public void TakeDamage(float damage)
     {
         Debug.Log("hit player, health is now " + currentHealth);
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
+        Actions.OnPlayerHit(currentHealth / maxHealth);
+
         // Gameover if health reaches 0
         if (currentHealth <= 0)
         {
             Debug.Log("game over");
-            Actions.OnGameOver();
+            Actions.OnPlayerDie();
         }
     }
 

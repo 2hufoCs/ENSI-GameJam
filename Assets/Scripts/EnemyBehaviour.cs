@@ -12,8 +12,8 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] TextMeshProUGUI _keysRequirementsTxt;
     bool[] _keysPressed;
 
-    [SerializeField] public bool isActive = true;
-    bool isTargeted;
+    [HideInInspector] public bool isActive = true;
+    [HideInInspector] public bool freeze;
 
     void Awake()
     {
@@ -36,6 +36,8 @@ public class EnemyBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (freeze) return;
+
         // Destroy enemy when keys requirements are met
         if (EnemyManager.targetedEnemy == this && CheckRequirements()) Die();
 

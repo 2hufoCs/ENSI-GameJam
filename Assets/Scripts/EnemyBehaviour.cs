@@ -6,9 +6,9 @@ using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour
 {
     Transform target;
-    [SerializeField] float _moveSpeed;
+    public float _moveSpeed;
     [SerializeField] float _damage;
-    [SerializeField] string _keysRequirements;
+    public string keysRequirements;
     [SerializeField] TextMeshProUGUI _keysRequirementsTxt;
     bool[] _keysPressed;
 
@@ -27,10 +27,10 @@ public class EnemyBehaviour : MonoBehaviour
 
     void Start()
     {
-        _keysPressed = new bool[_keysRequirements.Length];
+        _keysPressed = new bool[keysRequirements.Length];
         target = PlayerInput.Instance.gameObject.transform;
 
-        _keysRequirementsTxt.text = _keysRequirements;
+        _keysRequirementsTxt.text = keysRequirements;
     }
 
     // Update is called once per frame
@@ -66,7 +66,7 @@ public class EnemyBehaviour : MonoBehaviour
         }
 
         // Assign true for held keys
-        foreach (char _key in _keysRequirements)
+        foreach (char _key in keysRequirements)
         {
             if (!PlayerInput.Instance.keysHeld.Contains(_key.ToString()))
             {

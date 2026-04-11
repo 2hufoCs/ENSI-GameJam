@@ -328,6 +328,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1065623237}
   - component: {fileID: 1065623236}
+  - component: {fileID: 1065623238}
   m_Layer: 0
   m_Name: EnemyManager
   m_TagString: Untagged
@@ -347,7 +348,89 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06376ff780b99c14aa8b31fe61335e3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyManager
-  _spawnInterval: 1.5
+  baseWord: FUCK
+  _enemiesPerWave:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 1
+      value: 4
+      inSlope: 1.1111112
+      outSlope: 1.1111112
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 10
+      value: 14
+      inSlope: 1.1111112
+      outSlope: 1.1111112
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _spawnIntervalPerWave:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 1
+      value: 1.5
+      inSlope: -0.5364518
+      outSlope: -0.5364518
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.3652954
+      value: 1.3040366
+      inSlope: -0.3321561
+      outSlope: -0.3321561
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 10
+      value: 0.2
+      inSlope: -0.12786038
+      outSlope: -0.12786038
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _enemyMovespeedPerWave:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 1
+      value: 1.5
+      inSlope: 0.16666667
+      outSlope: 0.16666667
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 10
+      value: 3
+      inSlope: 0.16666667
+      outSlope: 0.16666667
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  wordFusion: {fileID: 1065623238}
   enemyPrefab: {fileID: 4105198262294321235, guid: 6858d0bdf5c4c7c4384dccb19f9e0cef, type: 3}
   enemyList: {fileID: 834571649}
   _spawnPoints:
@@ -370,6 +453,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1065623238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065623235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4468758b281cdfd45bfaf746e7137064, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WordFusion
+  testList: []
+  testWord: 
 --- !u!1 &1075328976
 GameObject:
   m_ObjectHideFlags: 0

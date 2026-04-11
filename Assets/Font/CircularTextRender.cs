@@ -47,11 +47,11 @@ public class CircularTextRender : MonoBehaviour
     {
         if(textRenderCharacters.sprite != null)
         {
-            GameObject characterGO = new GameObject(textRenderCharacters.letter.ToString());
-            characterGO.transform.SetParent(transform);
-            characterGO.AddComponent<Image>().rectTransform.sizeDelta = textRenderCharacters.sprite.rect.size * fontSize;
-            characterGO.transform.localPosition = position;
-            characterGO.GetComponent<Image>().sprite = textRenderCharacters.sprite;
+            GameObject characterGo = new GameObject(textRenderCharacters.letter.ToString());
+            characterGo.transform.SetParent(transform);
+            characterGo.AddComponent<Image>().rectTransform.sizeDelta = textRenderCharacters.sprite.rect.size * fontSize;
+            characterGo.transform.localPosition = position;
+            characterGo.GetComponent<Image>().sprite = textRenderCharacters.sprite;
         }
     }
     

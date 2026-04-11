@@ -3,51 +3,55 @@ using UnityEngine;
 using UnityEngine.UI;
 using NaughtyAttributes;
 
-public class TextRender : MonoBehaviour
+public class CircularTextRender : MonoBehaviour
 {
     [SerializeField] private List<TextRenderCharacters> letters;
     public string inputText;
     [SerializeField] private float fontSize;
-    [SerializeField] private float spaceSize;
+    [SerializeField,MinMaxSlider(0f,50f)] private Vector2 distanceRange;
+    [SerializeField,MinMaxSlider(-20f,20f)] private Vector2 angleNoise;
+    [SerializeField] private TextRender textRender;
     
     [Button]
     public void UpdateText()
     {
         if (Application.isPlaying) DeleteChild();
         
-        
-        foreach (char letter in inputText)
+        for (int i = 0 ; i < inputText.Length ;i++)
         {
-            TextRenderCharacters textRenderCharacters = FindLetter(letter);
+            float angle = 360f / inputText.Length * i;
+            angle += Random.Range(angleNoise.x*10, angleNoise.y*10)/10;
+            
+            Vector3 position = Quaternion.AngleAxis(angle,Vector3.forward ) * Vector3.up;
+            position *= Random.Range(distanceRange.x*10, distanceRange.y*10)/10;
+            TextRenderCharacters textRenderCharacters = FindLetter(inputText[i]);
             if (textRenderCharacters != null)
             {
-                InstantiateCharacters(textRenderCharacters);
+                InstantiateCharacters(textRenderCharacters , position);
             }
         }
+        
+        textRender.inputText = inputText;
+        textRender.UpdateText();
     }
     
     private void DeleteChild()
     {
         foreach (Transform child in transform)
         {
-            Destroy(child.gameObject);
+            if (child.gameObject != textRender.gameObject) Destroy(child.gameObject);
         }
     }
     
-    
-
-    private void InstantiateCharacters(TextRenderCharacters textRenderCharacters)
+    private void InstantiateCharacters(TextRenderCharacters textRenderCharacters,Vector2 position)
     {
-        GameObject characterGO = new GameObject(textRenderCharacters.letter.ToString());
-        characterGO.transform.SetParent(transform);
         if(textRenderCharacters.sprite != null)
         {
+            GameObject characterGO = new GameObject(textRenderCharacters.letter.ToString());
+            characterGO.transform.SetParent(transform);
             characterGO.AddComponent<Image>().rectTransform.sizeDelta = textRenderCharacters.sprite.rect.size * fontSize;
+            characterGO.transform.localPosition = position;
             characterGO.GetComponent<Image>().sprite = textRenderCharacters.sprite;
-        }
-        else
-        {
-            characterGO.AddComponent<Image>().rectTransform.sizeDelta = new Vector2(spaceSize, 0);
         }
     }
     

@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 158425294}
   - component: {fileID: 158425293}
   m_Layer: 5
-  m_Name: Image
+  m_Name: TitleScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -9,7 +9,15 @@ using Unity.VisualScripting.Antlr3.Runtime.Tree;
 
 public class UIManager : MonoBehaviour
 {
+    [Header("Health Bar")]
     [SerializeField] Image healthBar;
+    [SerializeField] float maxShakeAmount;
+    [SerializeField] float maxShakeInterval;
+    // [SerializeField] float strength = 100;
+    // [SerializeField] int vibrato = 10;
+    // [SerializeField] float randomness = 90;
+
+    [Header("Target Word")]
     [SerializeField] TextRender targetWord;
     [SerializeField] TextMeshProUGUI heldKeysTxt;
 
@@ -63,6 +71,11 @@ public class UIManager : MonoBehaviour
             targetWord.UpdateText();   
         }
 
+        // Shake health bar
+        healthBar.GetComponent<UISimpleShake>().range = maxShakeAmount * healthBar.fillAmount;
+        healthBar.GetComponent<UISimpleShake>().shakeInterval = maxShakeInterval * healthBar.fillAmount;
+        //healthBar.GetComponent<RectTransform>().DOShakeAnchorPos(99, strength, vibrato, randomness);
+
         // Show held keys
         heldKeysTxt.text = PlayerInput.Instance.ListToString(PlayerInput.Instance.keysHeld);
 
@@ -95,7 +108,7 @@ public class UIManager : MonoBehaviour
     void DecreaseHealth(float normalizedHealth)
     {
         // TODO: health bar tweening
-        healthBar.fillAmount = normalizedHealth;
+        healthBar.fillAmount = 1 - normalizedHealth;
     }
 
     void ShowLoseMenu()

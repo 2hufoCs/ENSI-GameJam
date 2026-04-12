@@ -187,7 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBehaviour
   _moveSpeed: 1.25
   _speedReductionMult: 0.15
-  _damage: 35
+  _damage: 45
   keysRequirements: 
   _keysRequirementsTxt: {fileID: 2352189673619658494}
   isActive: 1

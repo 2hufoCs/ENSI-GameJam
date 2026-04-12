@@ -26,7 +26,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5145527438481493049}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -159,7 +159,7 @@ MonoBehaviour:
   - letter: 67
     sprite: {fileID: -1710067782, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
   - letter: 68
-    sprite: {fileID: 443957594, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
+    sprite: {fileID: -231166401, guid: 7218cd09231b7d9409137e7a0cdadc48, type: 3}
   - letter: 69
     sprite: {fileID: 21300000, guid: 47f6a56c5be77cb44bae715d78f57083, type: 3}
   - letter: 70
@@ -187,7 +187,7 @@ MonoBehaviour:
   - letter: 81
     sprite: {fileID: 1462958437, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
   - letter: 82
-    sprite: {fileID: -231166401, guid: 7218cd09231b7d9409137e7a0cdadc48, type: 3}
+    sprite: {fileID: 129329081, guid: 7218cd09231b7d9409137e7a0cdadc48, type: 3}
   - letter: 83
     sprite: {fileID: -323810878, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
   - letter: 84
@@ -206,7 +206,7 @@ MonoBehaviour:
     sprite: {fileID: -595220279, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
   inputText: LO
   fontSize: 0.75
-  distanceRange: {x: 25, y: 35}
+  distanceRange: {x: 35, y: 45}
   angleNoise: {x: -5, y: 5}
   shakeDistanceCurve:
     serializedVersion: 2

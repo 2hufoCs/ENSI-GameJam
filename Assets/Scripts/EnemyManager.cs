@@ -9,8 +9,9 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] string baseWords;
     [SerializeField] string finalWord = "HARDER";
 
-    float currentWave = 0;
+    int currentWave = 0;
     float maxWaves;
+    List<int> mergelessWavesIndexes = new() { 1, 2, 4, 5, 7, 9};
 
     List<string> possibleKeyRequirements;
 
@@ -35,7 +36,7 @@ public class EnemyManager : MonoBehaviour
     void Start()
     {
         // Update curve key times
-        maxWaves = wordFusion.InitiateKeys(baseWords, finalWord);
+        maxWaves = wordFusion.InitiateKeys(baseWords, finalWord) + mergelessWavesIndexes.Count;
         _enemiesPerWave.keys[^1].time = maxWaves;
         _spawnIntervalPerWave.keys[^1].time = maxWaves;
         _enemyMovespeedPerWave.keys[^1].time = maxWaves;
@@ -65,7 +66,7 @@ public class EnemyManager : MonoBehaviour
             Win();
             return;
         }
-        possibleKeyRequirements = wordFusion.finalQueue.Dequeue();
+        if (!mergelessWavesIndexes.Contains(currentWave)) possibleKeyRequirements = wordFusion.finalQueue.Dequeue();
 
         currentWave++;
 
@@ -133,8 +134,8 @@ public class EnemyManager : MonoBehaviour
         }
 
         // Change enemy color for debug
-        if (previousTargetedEnemy && previousTargetedEnemy != closestEnemy) previousTargetedEnemy.GetComponent<SpriteRenderer>().color = Color.black;
-        closestEnemy.GetComponent<SpriteRenderer>().color = Color.blue;
+        //if (previousTargetedEnemy && previousTargetedEnemy != closestEnemy) previousTargetedEnemy.GetComponent<SpriteRenderer>().color = Color.black;
+        //closestEnemy.GetComponent<SpriteRenderer>().color = Color.blue;
         return closestEnemy;
     }
 

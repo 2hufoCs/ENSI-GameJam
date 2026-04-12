@@ -24,6 +24,11 @@ public class RandomSfxPlayer : MonoBehaviour
         Singleton();
     }
 
+    public void Quit()
+    {
+        Application.Quit();
+    }
+    
     public void Play(string clipName)
     {
         foreach (AudioClipName clip in _clips)

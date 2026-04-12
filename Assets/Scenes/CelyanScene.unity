@@ -2496,6 +2496,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 716578986}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2779213321967892561, guid: 100a6b0b51514bd4eb90e7839ed0876f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1992607318}
     - targetCorrespondingSourceObject: {fileID: 8091172069885724073, guid: 100a6b0b51514bd4eb90e7839ed0876f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1133844375}
@@ -3380,6 +3383,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c63faf56d6adbf14ab6f5b829118110b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!1 &1992607313 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2779213321967892561, guid: 100a6b0b51514bd4eb90e7839ed0876f, type: 3}
+  m_PrefabInstance: {fileID: 1478928215}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1992607318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1992607313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd8036b95189d0046887d7e6399b8c28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChromaticAberrationTween
+  CrtMat: {fileID: 2100000, guid: 71a899066a0cb704b91996afb2846b29, type: 2}
+  baseBlur: 0.0015
+  blurHit: 0.005
+  durationHit: 0.4
+  blurDie: 0.01
+  durationDie: 2
+  blurWave: 0.003
+  durationWave: 1.2
 --- !u!1001 &2002181866
 PrefabInstance:
   m_ObjectHideFlags: 0

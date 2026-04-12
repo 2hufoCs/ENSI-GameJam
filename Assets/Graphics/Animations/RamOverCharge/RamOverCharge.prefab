@@ -137,4 +137,4 @@ MonoBehaviour:
   - {fileID: -466261759, guid: 1ed530c9215516842808a32d3353edeb, type: 3}
   - {fileID: -2089065585, guid: 1ed530c9215516842808a32d3353edeb, type: 3}
   - {fileID: 1413773035, guid: 1ed530c9215516842808a32d3353edeb, type: 3}
-  frameDuration: 0
+  frameDuration: 0.1

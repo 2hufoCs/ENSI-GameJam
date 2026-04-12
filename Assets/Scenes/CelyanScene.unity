@@ -851,6 +851,7 @@ GameObject:
   - component: {fileID: 864765773}
   - component: {fileID: 864765772}
   - component: {fileID: 864765775}
+  - component: {fileID: 864765776}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -976,6 +977,45 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &864765776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864765771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85ea9eb2af8cbf9409d75d57784ea06e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RandomSfxPlayer
+  _clips:
+  - name: Death
+    clips:
+    - {fileID: 8300000, guid: 149be79b1adf1594786a437b1696f36f, type: 3}
+    - {fileID: 8300000, guid: 02eec522bb3ee0f4199e20368057ebbb, type: 3}
+  - name: Gunshot
+    clips:
+    - {fileID: 8300000, guid: 59f67164fb195cc42b41c9893239c762, type: 3}
+    - {fileID: 8300000, guid: 2b50957c2f586614a9e71dce9fe8ebb6, type: 3}
+    - {fileID: 8300000, guid: 912357bfb63f96e40a2f9215c6bd698b, type: 3}
+    - {fileID: 8300000, guid: 5416273b2aa39b84cb3e897c72d2f3ac, type: 3}
+    - {fileID: 8300000, guid: f640082c081636140ba1d199cced2888, type: 3}
+    - {fileID: 8300000, guid: a2c24c9856128f84f87f1e47df7da8f0, type: 3}
+    - {fileID: 8300000, guid: e2f02b96f3fbbf245bfbbc44acf20188, type: 3}
+  - name: Hit
+    clips:
+    - {fileID: 8300000, guid: ff606fe69e97bb546998e5a3b2af2b54, type: 3}
+    - {fileID: 8300000, guid: d52d2ef038b48fa48a7f43dd7c2f54e8, type: 3}
+  - name: Swish
+    clips:
+    - {fileID: 8300000, guid: 3e14d89043e33784aa7fd5a7933080bb, type: 3}
+    - {fileID: 8300000, guid: e2a40a7581f2ed140940037160854aab, type: 3}
+    - {fileID: 8300000, guid: 053a3832c3f00fb4183279d6a5242f86, type: 3}
+    - {fileID: 8300000, guid: 85b2cced90fd1294ab2b1ef9f627b224, type: 3}
+    - {fileID: 8300000, guid: cc76f582ab839714dac6e059c45f3f4f, type: 3}
+    - {fileID: 8300000, guid: 2e636804a7400884db50d83b735e4983, type: 3}
+    - {fileID: 8300000, guid: ae44d68b7308cb9478ccf5ee3265366d, type: 3}
 --- !u!1 &1065623235
 GameObject:
   m_ObjectHideFlags: 0

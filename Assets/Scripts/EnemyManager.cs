@@ -76,7 +76,7 @@ public class EnemyManager : MonoBehaviour
         _spawnInterval = _spawnIntervalPerWave.Evaluate(currentWave);
         _enemyMovespeed = _enemyMovespeedPerWave.Evaluate(currentWave);
 
-        Actions.OnNewWave();
+        //Actions.OnNewWave();
 
         #if UNITY_EDITOR
             Debug.Log($"starting wave {currentWave}, enemiesLeft: {_enemiesLeft}, spawnInterval: {_spawnInterval}, _enemyMovespeed: {_enemyMovespeed}");

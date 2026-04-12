@@ -52,7 +52,7 @@ MonoBehaviour:
   _speedReductionMult: 0.15
   _damage: 45
   keysRequirements: 
-  _keysRequirements: {fileID: 7148688460690997827}
+  textRender: {fileID: 7148688460690997827}
   circularTextRender: {fileID: 8799008193805172793}
   isActive: 1
   freeze: 0

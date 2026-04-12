@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3954926830258653504
+--- !u!1 &459110294258987235
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,24 +8,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 65460517064461810}
-  - component: {fileID: 8175900310991820260}
-  - component: {fileID: 2305744125295912768}
-  - component: {fileID: 721092092856284162}
+  - component: {fileID: 792837490217622334}
+  - component: {fileID: 6312476988427125080}
+  - component: {fileID: 5387224235049480427}
+  - component: {fileID: 2522685431783127089}
   m_Layer: 0
-  m_Name: PlayerExplosion
+  m_Name: RamOverCharge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &65460517064461810
+--- !u!4 &792837490217622334
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3954926830258653504}
+  m_GameObject: {fileID: 459110294258987235}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.39193, y: 1.29279, z: 0}
@@ -34,14 +34,14 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &8175900310991820260
+--- !u!212 &6312476988427125080
 SpriteRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3954926830258653504}
+  m_GameObject: {fileID: 459110294258987235}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -93,17 +93,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!95 &2305744125295912768
+--- !u!95 &5387224235049480427
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3954926830258653504}
+  m_GameObject: {fileID: 459110294258987235}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1ef14519be6f2954b9b5f1b899590b5e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 782fad5a47fe27c4083dc0906c08d1cd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -115,17 +115,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &721092092856284162
+--- !u!114 &2522685431783127089
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3954926830258653504}
+  m_GameObject: {fileID: 459110294258987235}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8448f9c44297da041be1175ec3faae1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _anim: {fileID: 2305744125295912768}
+  _anim: {fileID: 5387224235049480427}
   _triggerName: Death

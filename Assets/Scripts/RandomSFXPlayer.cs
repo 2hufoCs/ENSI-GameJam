@@ -13,19 +13,24 @@ public class RandomSfxPlayer : MonoBehaviour
         public string name;
         public List<AudioClip> clips;
 
-        public bool CheckName(string name)
+        public bool CheckName(string testName)
         {
-            return name == name;
+            return name == testName;
         }
     }
-    
+
+    public void Awake()
+    {
+        Singleton();
+    }
+
     public void Play(string clipName)
     {
         foreach (AudioClipName clip in _clips)
         {
             if (clip.CheckName(clipName))
             {
-                AudioSource.PlayClipAtPoint(clip.clips[Random.Range(0, _clips.Count)], transform.position);
+                AudioSource.PlayClipAtPoint(clip.clips[Random.Range(0, clip.clips.Count)], transform.position);
                 return;
             }
         }

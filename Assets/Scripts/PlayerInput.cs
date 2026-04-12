@@ -170,7 +170,10 @@ public class PlayerInput : MonoBehaviour
 
         newProjectile.GetComponent<Projectile>().initialDir = dir;
         newProjectile.GetComponent<Projectile>().initialHeldKeys = ListToString(keysHeld);
-
+        
+        //Play SFX 
+        RandomSfxPlayer.Instance.Play("Gunshot");
+        
         // Reset held keys
         keysHeld = new();
     }

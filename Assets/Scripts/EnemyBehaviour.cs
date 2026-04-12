@@ -11,7 +11,7 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] float _speedReductionMult = .15f;
     [SerializeField] float _damage;
     public string keysRequirements;
-    [SerializeField] TextMeshProUGUI _keysRequirementsTxt;
+    [SerializeField] TextRender _keysRequirements;
     [SerializeField] CircularTextRender circularTextRender;
     bool[] _keysPressed;
 
@@ -45,7 +45,8 @@ public class EnemyBehaviour : MonoBehaviour
         _keysPressed = new bool[keysRequirements.Length];
         target = PlayerInput.Instance.gameObject.transform;
 
-        _keysRequirementsTxt.text = keysRequirements;
+        _keysRequirements.inputText = keysRequirements;
+        _keysRequirements.UpdateText();
         circularTextRender.inputText = keysRequirements;
         circularTextRender.UpdateText();
         _moveSpeed -= _speedReductionMult * (keysRequirements.Length - 1);
@@ -126,6 +127,7 @@ public class EnemyBehaviour : MonoBehaviour
     public void Die()
     {
         PlayerInput.Instance.keysHeld = new();
+        RandomSfxPlayer.Instance.Play("DeathApp");
         Destroy(gameObject);
     }
 
@@ -143,7 +145,7 @@ public class EnemyBehaviour : MonoBehaviour
         freeze = true;
 
         GetComponent<SpriteRenderer>().enabled = false;
-        _keysRequirementsTxt.enabled = false;
+        _keysRequirements.enabled = false;
 
         for (int i = 0; i < circularTextRender.transform.childCount; i++)
         {

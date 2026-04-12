@@ -852,6 +852,7 @@ GameObject:
   - component: {fileID: 864765772}
   - component: {fileID: 864765775}
   - component: {fileID: 864765776}
+  - component: {fileID: 864765777}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1016,6 +1017,74 @@ MonoBehaviour:
     - {fileID: 8300000, guid: cc76f582ab839714dac6e059c45f3f4f, type: 3}
     - {fileID: 8300000, guid: 2e636804a7400884db50d83b735e4983, type: 3}
     - {fileID: 8300000, guid: ae44d68b7308cb9478ccf5ee3265366d, type: 3}
+  - name: DeathApp
+    clips:
+    - {fileID: 8300000, guid: bcfc16d65a3c78440a31297a22694e48, type: 3}
+    - {fileID: 8300000, guid: a480c7efd7ca5224b952ba3b16490ebe, type: 3}
+    - {fileID: 8300000, guid: 5fa65495ce79ed74aa824d8002a7ba51, type: 3}
+    - {fileID: 8300000, guid: a25356ff3eb642c48a4593791015ed4f, type: 3}
+    - {fileID: 8300000, guid: 603a6985d069f1f49ad1630990fdf4cf, type: 3}
+    - {fileID: 8300000, guid: 39f68dee04b197c438bad1544f8fc04c, type: 3}
+    - {fileID: 8300000, guid: 716a1fc6090768a4e840566fa9e6140d, type: 3}
+    - {fileID: 8300000, guid: e0b5e3cb0394aeb4586f271a85fecafa, type: 3}
+    - {fileID: 8300000, guid: ab7998ceae4f83747b862393a09dc721, type: 3}
+--- !u!114 &864765777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864765771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8448f9c44297da041be1175ec3faae1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayAnimationOnDeath
+  deathEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 864765776}
+        m_TargetAssemblyTypeName: RandomSfxPlayer, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Death
+          m_BoolArgument: 0
+        m_CallState: 2
+  playerDamageEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 864765776}
+        m_TargetAssemblyTypeName: RandomSfxPlayer, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Hit
+          m_BoolArgument: 0
+        m_CallState: 2
+  winEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 864765776}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1065623235
 GameObject:
   m_ObjectHideFlags: 0

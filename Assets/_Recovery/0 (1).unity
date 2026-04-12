@@ -442,7 +442,7 @@ Transform:
   m_GameObject: {fileID: 574692345}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.06, y: -0.6, z: 0}
+  m_LocalPosition: {x: 4.8, y: -0.76, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -533,7 +533,7 @@ Transform:
   m_GameObject: {fileID: 596954219}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.79, y: -0.69, z: 0}
+  m_LocalPosition: {x: -6.13, y: -1.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -868,25 +868,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06376ff780b99c14aa8b31fe61335e3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyManager
-  baseWords: I LUV UR GIRL LOVE U GRIND LONGER
-  finalWord: LONGER
+  baseWords: FUCK
+  finalWord: LO
   _enemiesPerWave:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 1
-      value: 2
-      inSlope: 0.15789473
-      outSlope: 0.15789473
+      value: 4
+      inSlope: 2.5
+      outSlope: 2.5
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 20
-      value: 5
-      inSlope: 0.15789473
-      outSlope: 0.15789473
+      time: 5
+      value: 14
+      inSlope: 2.5
+      outSlope: 2.5
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -900,29 +900,29 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 1.5
-      inSlope: -0.29116908
-      outSlope: -0.29116908
+      inSlope: -1.0338109
+      outSlope: -1.0338109
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.27102387
+      outWeight: 0.11032996
     - serializedVersion: 3
-      time: 6.9776278
-      value: 0.7423792
-      inSlope: -0.04040817
-      outSlope: -0.04040817
+      time: 2.3317928
+      value: 0.74427533
+      inSlope: -0.28129467
+      outSlope: -0.28129467
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.060833275
+      outWeight: 0.13417295
     - serializedVersion: 3
-      time: 20
-      value: 0.6
-      inSlope: -0.0011052941
-      outSlope: -0.0011052941
+      time: 5
+      value: 0.4
+      inSlope: 0.00000015003205
+      outSlope: 0.00000015003205
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.09227943
+      inWeight: 0.22334066
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -932,18 +932,18 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 1
-      value: 0.7
-      inSlope: 0.042105265
-      outSlope: 0.042105265
+      value: 1
+      inSlope: 0.25
+      outSlope: 0.25
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 20
-      value: 1.5
-      inSlope: 0.042105265
-      outSlope: 0.042105265
+      time: 5
+      value: 2
+      inSlope: 0.25
+      outSlope: 0.25
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -1291,7 +1291,7 @@ Transform:
   m_GameObject: {fileID: 1243417252}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.09, y: 4.59, z: 0}
+  m_LocalPosition: {x: 5.85, y: 5.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1504,7 +1504,7 @@ Transform:
   m_GameObject: {fileID: 1443358305}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.62, y: 2.1, z: 0}
+  m_LocalPosition: {x: -6.43, y: 2.79, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1595,7 +1595,7 @@ Transform:
   m_GameObject: {fileID: 1459070095}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.27, y: 4.5, z: 0}
+  m_LocalPosition: {x: -4.54, y: 5.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1842,10 +1842,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerUICanva
       objectReference: {fileID: 0}
-    - target: {fileID: 2779213321967892561, guid: 100a6b0b51514bd4eb90e7839ed0876f, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3663766290830122836, guid: 100a6b0b51514bd4eb90e7839ed0876f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2066,7 +2062,7 @@ Transform:
   m_GameObject: {fileID: 1664727404}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.05, y: -1.13, z: 0}
+  m_LocalPosition: {x: -0.59, y: -1.42, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2836,7 +2832,7 @@ Transform:
   m_GameObject: {fileID: 2142912107}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.93, y: 1.92, z: 0}
+  m_LocalPosition: {x: 6.38, y: 1.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

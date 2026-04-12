@@ -105,7 +105,6 @@ public class PlayerInput : MonoBehaviour
     {
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        Debug.Log("hit player, health is now " + currentHealth);
 
         Actions.OnPlayerHit(currentHealth / maxHealth);
 

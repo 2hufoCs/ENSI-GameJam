@@ -7,6 +7,8 @@ using Random = UnityEngine.Random;
 public class WordFusion : MonoBehaviour
 {
         
+        [SerializeField] MergeAnimation mergeAnimation;
+        [Header("Tests")]
         private readonly List<Stack<List<string>>> _stackList = new List<Stack<List<string>>>();
         public readonly Queue<List<String>> finalQueue = new Queue<List<string>>();
 
@@ -241,12 +243,6 @@ public class WordFusion : MonoBehaviour
         [Button]
         private void NewSystemTest()
         {
-                
-                InitiateKeys(testWord, testWord2);
-                PrintListString(LimitedDequeue(2));
-                InitiateKeys(testWord, testWord2);
-                PrintListString(LimitedDequeue(4));
-                InitiateKeys(testWord, testWord2);
-                PrintListString(LimitedDequeue(6));
+                PrintListString(LimitedDequeue(99));
         }
 }

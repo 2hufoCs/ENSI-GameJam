@@ -7,6 +7,7 @@ public class EnemyBehaviour : MonoBehaviour
 {
     Transform target;
     public float _moveSpeed;
+    [SerializeField] float _speedReductionMult = .15f;
     [SerializeField] float _damage;
     public string keysRequirements;
     [SerializeField] TextMeshProUGUI _keysRequirementsTxt;
@@ -31,6 +32,7 @@ public class EnemyBehaviour : MonoBehaviour
         target = PlayerInput.Instance.gameObject.transform;
 
         _keysRequirementsTxt.text = keysRequirements;
+        _moveSpeed -= _speedReductionMult * (keysRequirements.Length - 1);
     }
 
     // Update is called once per frame

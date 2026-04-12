@@ -6,9 +6,11 @@ public class EnemyManager : MonoBehaviour
     public static List<EnemyBehaviour> enemies = new();
     public static EnemyBehaviour targetedEnemy;
 
-    [SerializeField] string baseWord;
+    [SerializeField] string baseWords;
+    [SerializeField] string finalWord = "HARDER";
 
     float currentWave = 0;
+    float maxWaves;
 
     List<string> possibleKeyRequirements;
 
@@ -32,7 +34,14 @@ public class EnemyManager : MonoBehaviour
 
     void Start()
     {
-        //wordFusion.GenerateStack(baseWord);
+        // Update curve key times
+        maxWaves = wordFusion.InitiateKeys(baseWords, finalWord);
+        _enemiesPerWave.keys[^1].time = maxWaves;
+        _spawnIntervalPerWave.keys[^1].time = maxWaves;
+        _enemyMovespeedPerWave.keys[^1].time = maxWaves;
+
+        Debug.Log($"there are {maxWaves} waves with given words: {baseWords}");
+
         StartWave();   
     }
 
@@ -49,20 +58,20 @@ public class EnemyManager : MonoBehaviour
     void StartWave()
     {
         // Win if word has been fusioned
-        /*if (wordFusion.finalStack.Count == 0)
+        if (wordFusion.finalQueue.Count == 0)
         {
             Win();
             return;
         }
-        possibleKeyRequirements = wordFusion.finalStack.Pop();*/
+        possibleKeyRequirements = wordFusion.finalQueue.Dequeue();
 
         currentWave++;
-
-        //Debug.Log("starting wave " + currentWave);
 
         _enemiesLeft = (int)_enemiesPerWave.Evaluate(currentWave);
         _spawnInterval = _spawnIntervalPerWave.Evaluate(currentWave);
         _enemyMovespeed = _enemyMovespeedPerWave.Evaluate(currentWave);
+
+        Debug.Log($"starting wave {currentWave}, enemiesLeft: {_enemiesLeft}, spawnInterval: {_spawnInterval}, _enemyMovespeed: {_enemyMovespeed}");
 
         //Debug.Log($"enemies: {_enemiesLeft}, spawn interval: {_spawnInterval}");
 

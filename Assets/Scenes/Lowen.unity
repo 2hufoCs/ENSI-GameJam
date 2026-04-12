@@ -119,30 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &691369446 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3954926830258653504, guid: 14948a7b599c48f44aba0693774cc6a6, type: 3}
-  m_PrefabInstance: {fileID: 5190052621679480841}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &691369447 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 2305744125295912768, guid: 14948a7b599c48f44aba0693774cc6a6, type: 3}
-  m_PrefabInstance: {fileID: 5190052621679480841}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &691369450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 691369446}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8448f9c44297da041be1175ec3faae1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  _anim: {fileID: 691369447}
-  _triggerName: Death
 --- !u!1 &763223800
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,11 +487,65 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3954926830258653504, guid: 14948a7b599c48f44aba0693774cc6a6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 691369450}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14948a7b599c48f44aba0693774cc6a6, type: 3}
+--- !u!1001 &6053306356509919528
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 459110294258987235, guid: 02d56f4e71c34d24c863b0ac949a7692, type: 3}
+      propertyPath: m_Name
+      value: RamOverCharge
+      objectReference: {fileID: 0}
+    - target: {fileID: 792837490217622334, guid: 02d56f4e71c34d24c863b0ac949a7692, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.39193
+      objectReference: {fileID: 0}
+    - target: {fileID: 792837490217622334, guid: 02d56f4e71c34d24c863b0ac949a7692, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.29279
+      objectReference: {fileID: 0}
+    - target: {fileID: 792837490217622334, guid: 02d56f4e71c34d24c863b0ac949a7692, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 792837490217622334, guid: 02d56f4e71c34d24c863b0ac949a7692, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 792837490217622334, guid: 02d56f4e71c34d24c863b0ac949a7692, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 792837490217622334, guid: 02d56f4e71c34d24c863b0ac949a7692, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 792837490217622334, guid: 02d56f4e71c34d24c863b0ac949a7692, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 792837490217622334, guid: 02d56f4e71c34d24c863b0ac949a7692, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 792837490217622334, guid: 02d56f4e71c34d24c863b0ac949a7692, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 792837490217622334, guid: 02d56f4e71c34d24c863b0ac949a7692, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 02d56f4e71c34d24c863b0ac949a7692, type: 3}
 --- !u!1001 &6819958925279241037
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -625,3 +655,4 @@ SceneRoots:
   - {fileID: 1555780761}
   - {fileID: 763223803}
   - {fileID: 5190052621679480841}
+  - {fileID: 6053306356509919528}

@@ -1348,6 +1348,11 @@ MonoBehaviour:
   - {fileID: 596954220}
   - {fileID: 1664727405}
   - {fileID: 574692346}
+  _invertedSpawnPoints:
+  - {fileID: 1443358306}
+  - {fileID: 1459070096}
+  - {fileID: 1390458209}
+  - {fileID: 1243417253}
 --- !u!4 &1065623237
 Transform:
   m_ObjectHideFlags: 0

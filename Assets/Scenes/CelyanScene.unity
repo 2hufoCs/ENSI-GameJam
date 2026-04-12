@@ -1029,6 +1029,11 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 716a1fc6090768a4e840566fa9e6140d, type: 3}
     - {fileID: 8300000, guid: e0b5e3cb0394aeb4586f271a85fecafa, type: 3}
     - {fileID: 8300000, guid: ab7998ceae4f83747b862393a09dc721, type: 3}
+  - name: Merge
+    clips:
+    - {fileID: 8300000, guid: e3ac5213af4849743a4e0a7c38797f82, type: 3}
+    - {fileID: 8300000, guid: ed6664da7d659d7428b0706594648cfb, type: 3}
+    - {fileID: 8300000, guid: 57b4bb985ef0fec448e08dc68c510ef4, type: 3}
 --- !u!114 &864765777
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -40,7 +40,7 @@ public class EnemyManager : MonoBehaviour
         _spawnIntervalPerWave.keys[^1].time = maxWaves;
         _enemyMovespeedPerWave.keys[^1].time = maxWaves;
 
-        Debug.Log($"there are {maxWaves} waves with given words: {baseWords}");
+        //Debug.Log($"there are {maxWaves} waves with given words: {baseWords}");
 
         StartWave();   
     }
@@ -73,7 +73,7 @@ public class EnemyManager : MonoBehaviour
         _spawnInterval = _spawnIntervalPerWave.Evaluate(currentWave);
         _enemyMovespeed = _enemyMovespeedPerWave.Evaluate(currentWave);
 
-        Debug.Log($"starting wave {currentWave}, enemiesLeft: {_enemiesLeft}, spawnInterval: {_spawnInterval}, _enemyMovespeed: {_enemyMovespeed}");
+        //Debug.Log($"starting wave {currentWave}, enemiesLeft: {_enemiesLeft}, spawnInterval: {_spawnInterval}, _enemyMovespeed: {_enemyMovespeed}");
 
         //Debug.Log($"enemies: {_enemiesLeft}, spawn interval: {_spawnInterval}");
 
@@ -145,7 +145,6 @@ public class EnemyManager : MonoBehaviour
 
     void Win()
     {
-        Debug.Log("you win!!!");
         Actions.OnWin();
         freeze = true;
     }

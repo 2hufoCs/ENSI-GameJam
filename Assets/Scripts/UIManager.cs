@@ -109,15 +109,12 @@ public class UIManager : MonoBehaviour
 
             // Crashing after menu is shown
             Sequence crashSequence = DOTween.Sequence();
-            crashSequence.OnStart(() =>
-            {
-                crashSequence.AppendInterval(waitBeforeCrash);
-                crashSequence.OnComplete(() => Application.Quit());
+            crashSequence.AppendInterval(waitBeforeCrash);
+            crashSequence.OnComplete(() => { Application.Quit(); });
 
-                #if UNITY_EDITOR
-                    Debug.Log("Crashing game");
-                #endif
-            });
+            #if UNITY_EDITOR
+                Debug.Log("Crashing game");
+            #endif
         });
     }
 
@@ -132,15 +129,12 @@ public class UIManager : MonoBehaviour
 
             // Crashing after menu is shown
             Sequence crashSequence = DOTween.Sequence();
-            crashSequence.OnStart(() =>
-            {
-                crashSequence.AppendInterval(waitBeforeCrash);
-                crashSequence.OnComplete(() => Application.Quit());
+            crashSequence.AppendInterval(waitBeforeCrash);
+            crashSequence.OnComplete(() => { Application.Quit(); });
 
-                #if UNITY_EDITOR
-                    Debug.Log("Crashing game");
-                #endif
-            });
+            #if UNITY_EDITOR
+                Debug.Log("Crashing game");
+            #endif
         });
     }
 }

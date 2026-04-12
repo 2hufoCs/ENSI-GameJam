@@ -139,5 +139,6 @@ public class EnemyBehaviour : MonoBehaviour
         isActive = false;
         freeze = true;
         GetComponent<SpriteRenderer>().enabled = false;
+        _keysRequirementsTxt.enabled = false;
     }
 }

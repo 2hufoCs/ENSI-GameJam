@@ -11,7 +11,7 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] float _speedReductionMult = .15f;
     [SerializeField] float _damage;
     public string keysRequirements;
-    [SerializeField] TextRender _keysRequirements;
+    [SerializeField] public TextRender textRender;
     [SerializeField] CircularTextRender circularTextRender;
     bool[] _keysPressed;
 
@@ -45,8 +45,8 @@ public class EnemyBehaviour : MonoBehaviour
         _keysPressed = new bool[keysRequirements.Length];
         target = PlayerInput.Instance.gameObject.transform;
 
-        _keysRequirements.inputText = keysRequirements;
-        _keysRequirements.UpdateText();
+        textRender.inputText = keysRequirements;
+        textRender.UpdateText();
         circularTextRender.inputText = keysRequirements;
         circularTextRender.UpdateText();
         _moveSpeed -= _speedReductionMult * (keysRequirements.Length - 1);
@@ -107,9 +107,9 @@ public class EnemyBehaviour : MonoBehaviour
         // // Assign true for held keys
         // foreach (string keys in PlayerInput.Instance.keysHeld)
         // {
-        //     if (_keysRequirements.Contains(keys))
+        //     if (textRender.Contains(keys))
         //     {
-        //         int keyIndex = _keysRequirements.IndexOf(keys);
+        //         int keyIndex = textRender.IndexOf(keys);
         //         _keysPressed[keyIndex] = true;
         //     }
         // }
@@ -145,7 +145,7 @@ public class EnemyBehaviour : MonoBehaviour
         freeze = true;
 
         GetComponent<SpriteRenderer>().enabled = false;
-        _keysRequirements.gameObject.SetActive(false);
+        textRender.gameObject.SetActive(false);
 
         for (int i = 0; i < circularTextRender.transform.childCount; i++)
         {

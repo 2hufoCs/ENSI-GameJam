@@ -33,6 +33,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] Transform enemyList;
     [SerializeField] List<Transform> _spawnPoints;
+    [SerializeField] List<Transform> _invertedSpawnPoints;
 
     bool freeze = false;
 
@@ -116,12 +117,22 @@ public class EnemyManager : MonoBehaviour
         Transform randomSpawnpoint = _spawnPoints[Random.Range(0, _spawnPoints.Count)];
         GameObject newEnemy = Instantiate(enemyPrefab, randomSpawnpoint.position, Quaternion.identity, enemyList);
 
+        
+        
         EnemyBehaviour enemyBehaviour = newEnemy.GetComponent<EnemyBehaviour>();
         enemyBehaviour.keysRequirements = possibleKeyRequirements[Random.Range(0, possibleKeyRequirements.Count)];
         enemyBehaviour._moveSpeed = _enemyMovespeed;
 
         _spawnIntervalTimer = 0;
         _enemiesLeft--;
+        if (enemyBehaviour.keysRequirements.Length == 1)
+        {
+            enemyBehaviour.textRender.transform.localPosition = new Vector2(0, 1);
+        }
+        if(_invertedSpawnPoints.Contains(randomSpawnpoint))
+        {
+            enemyBehaviour.textRender.transform.localPosition = new Vector2(0, -enemyBehaviour.textRender.transform.localPosition.y);
+        }
         //Debug.Log(_enemiesLeft + " enemies left");
     }
 

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class EnemyManager : MonoBehaviour
     int currentWave = 0;
     float maxWaves;
     List<int> mergelessWavesIndexes = new() { 1, 2, 4, 5, 7, 9};
+    [SerializeField] float waveInterval;
 
     List<string> possibleKeyRequirements;
 
@@ -74,11 +76,16 @@ public class EnemyManager : MonoBehaviour
         _spawnInterval = _spawnIntervalPerWave.Evaluate(currentWave);
         _enemyMovespeed = _enemyMovespeedPerWave.Evaluate(currentWave);
 
-        //Debug.Log($"starting wave {currentWave}, enemiesLeft: {_enemiesLeft}, spawnInterval: {_spawnInterval}, _enemyMovespeed: {_enemyMovespeed}");
+        Actions.OnNewWave();
 
-        //Debug.Log($"enemies: {_enemiesLeft}, spawn interval: {_spawnInterval}");
+        #if UNITY_EDITOR
+            Debug.Log($"starting wave {currentWave}, enemiesLeft: {_enemiesLeft}, spawnInterval: {_spawnInterval}, _enemyMovespeed: {_enemyMovespeed}");
+        #endif
 
-        SpawnEnemy();
+        // Blur/change lines to show new wave
+        Sequence waveSequence = DOTween.Sequence();
+        waveSequence.AppendInterval(waveInterval);
+        waveSequence.OnComplete(() => { SpawnEnemy(); });
     }
 
     // Update is called once per frame

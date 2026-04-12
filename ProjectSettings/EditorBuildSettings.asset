@@ -6,11 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/CelyanScene.unity
-    guid: 6bbb08acff9c875499e8ece835c26d5b
-  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 625349c9e95df834193e2ecd587c82e9
+  - enabled: 1
+    path: Assets/Scenes/CelyanScene.unity
+    guid: 6bbb08acff9c875499e8ece835c26d5b
   - enabled: 1
     path: Assets/Scenes/Lowen.unity
     guid: 7d1731e5fcb3ff04882e785023b331d1

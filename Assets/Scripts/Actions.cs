@@ -9,4 +9,5 @@ public class Actions : MonoBehaviour
     public static Action<float> OnPlayerHit;
     public static Action OnPlayerDie;
     public static Action OnWin;
+    public static Action OnNewWave;
 }

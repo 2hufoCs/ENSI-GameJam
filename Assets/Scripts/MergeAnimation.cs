@@ -73,9 +73,9 @@ public class MergeAnimation : MonoBehaviour
             {
                 leftstring = oldList[i];
                 rightstring = oldList[i+1];
+                break;
             }
         }
-        print(leftstring + " + " + rightstring);
         foreach (char character in leftstring)
         {
             InstantiateAnimation(character.ToString(),_leftPanel);
@@ -91,7 +91,6 @@ public class MergeAnimation : MonoBehaviour
     
     public void InstantiateAnimation(string letter,Transform parent)
     {
-        print(letter);
         foreach (GlitchAnimations glitchAnimations in _clips)
         {
             if (glitchAnimations.name == letter)

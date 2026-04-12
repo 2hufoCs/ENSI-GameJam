@@ -1,20 +1,18 @@
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayAnimationOnDeath : MonoBehaviour
 {
-    [SerializeField] private Animator _anim;
-    [SerializeField,AnimatorParam("_anim")] private string _triggerName;
-
-    
+    [SerializeField] private UnityEvent deathEvent;
     
     void Awake()
     {
-        Actions.OnPlayerDie += () =>  { _anim.SetTrigger(_triggerName); };
+        Actions.OnPlayerDie += () =>  { deathEvent?.Invoke(); };
     }
     
     void OnDisable()
     {
-        Actions.OnPlayerDie -= () =>  { _anim.SetTrigger(_triggerName); };
+        Actions.OnPlayerDie -= () =>  { deathEvent?.Invoke(); };
     }
 }

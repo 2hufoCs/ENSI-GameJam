@@ -49,6 +49,7 @@ public class TextRender : MonoBehaviour
         {
             characterGO.AddComponent<Image>().rectTransform.sizeDelta = new Vector2(spaceSize, 0);
         }
+        characterGO.transform.localPosition = transform.localScale;
     }
     
     

@@ -6,12 +6,15 @@ public class UISimpleShake : MonoBehaviour
     public float shakeInterval = 0.5f;
     public float range;
     
-    private Vector2 _basePosition;
+    public Vector2 basePosition;
     private float _timer = 0f;
 
     void Start()
     {
-        _basePosition = transform.position;
+        if (basePosition == Vector2.zero)
+        {
+            basePosition = transform.localPosition;
+        }
     }
     void Update()
     {
@@ -19,7 +22,7 @@ public class UISimpleShake : MonoBehaviour
         if (_timer > shakeInterval)
         {
             _timer = 0;
-            transform.position = _basePosition + new Vector2(Random.Range(-range, range), Random.Range(-range, range));
+            transform.localPosition = basePosition + new Vector2(Random.Range(-range, range), Random.Range(-range, range));
         }
     }
 }

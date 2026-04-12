@@ -36,12 +36,14 @@ public class PlayerInput : MonoBehaviour
 
     void OnEnable()
     {
-        Actions.OnPlayerDie += FreezePlayer;
+        Actions.OnPlayerDie += KillPlayer;
+        Actions.OnWin += HidePlayer;
     }
 
     void OnDisable()
     {
-        Actions.OnPlayerDie -= FreezePlayer;
+        Actions.OnPlayerDie -= KillPlayer;
+        Actions.OnWin -= HidePlayer;
     }
 
     void Start()
@@ -86,9 +88,13 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-    void FreezePlayer()
+    void KillPlayer()
     {
         freeze = true;
+
+        // TODO: die animation
+
+        HidePlayer();
     }
 
     public string ListToString(List<string> stringList)
@@ -167,5 +173,11 @@ public class PlayerInput : MonoBehaviour
 
         // Reset held keys
         keysHeld = new();
+    }
+
+    void HidePlayer()
+    {
+        taskManagerSpriteRenderer.enabled = false;
+        gunSpriteRenderer.enabled = false;    
     }
 }

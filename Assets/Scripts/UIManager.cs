@@ -13,7 +13,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextRender targetWord;
     [SerializeField] TextMeshProUGUI heldKeysTxt;
 
-    [Header("Panels")]
+    [Header("End Panels")]
+    [SerializeField] GameObject winPanel;
+    [SerializeField] GameObject losePanel;
+    [SerializeField] float waitBeforeShowPanel = 2;
+    [SerializeField] float waitBeforeCrash = 7;
+
+    [Header("Gameplay Panels")]
     [SerializeField] RectTransform mainPanel;
     [SerializeField] RectTransform mainPanelBg;
     [SerializeField] RectTransform ramPanel;
@@ -36,11 +42,15 @@ public class UIManager : MonoBehaviour
     void OnEnable()
     {
         Actions.OnPlayerHit += DecreaseHealth;
+        Actions.OnWin += ShowWinMenu;
+        Actions.OnPlayerDie += ShowLoseMenu;
     }
 
     void OnDisable()
     {
         Actions.OnPlayerHit -= DecreaseHealth;
+        Actions.OnWin -= ShowWinMenu;
+        Actions.OnPlayerDie -= ShowLoseMenu;
     }
 
     // Update is called once per frame
@@ -86,5 +96,51 @@ public class UIManager : MonoBehaviour
     {
         // TODO: health bar tweening
         healthBar.fillAmount = normalizedHealth;
+    }
+
+    void ShowLoseMenu()
+    {
+        // Waiting before showing menu
+        Sequence loseSequence = DOTween.Sequence();
+        loseSequence.AppendInterval(waitBeforeShowPanel);
+        loseSequence.OnComplete(() => 
+        {
+            losePanel.SetActive(true);
+
+            // Crashing after menu is shown
+            Sequence crashSequence = DOTween.Sequence();
+            crashSequence.OnStart(() =>
+            {
+                crashSequence.AppendInterval(waitBeforeCrash);
+                crashSequence.OnComplete(() => Application.Quit());
+
+                #if UNITY_EDITOR
+                    Debug.Log("Crashing game");
+                #endif
+            });
+        });
+    }
+
+    void ShowWinMenu()
+    {
+        // Waiting before showing menu
+        Sequence winSequence = DOTween.Sequence();
+        winSequence.AppendInterval(waitBeforeShowPanel);
+        winSequence.OnComplete(() => 
+        {
+            winPanel.SetActive(true);
+
+            // Crashing after menu is shown
+            Sequence crashSequence = DOTween.Sequence();
+            crashSequence.OnStart(() =>
+            {
+                crashSequence.AppendInterval(waitBeforeCrash);
+                crashSequence.OnComplete(() => Application.Quit());
+
+                #if UNITY_EDITOR
+                    Debug.Log("Crashing game");
+                #endif
+            });
+        });
     }
 }

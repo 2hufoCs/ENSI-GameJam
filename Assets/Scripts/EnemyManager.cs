@@ -98,7 +98,7 @@ public class EnemyManager : MonoBehaviour
             SpawnEnemy();
         }
 
-        targetedEnemy = GetClosestEnemy();
+        if (!targetedEnemy) targetedEnemy = GetClosestEnemy();
     }
 
     void SpawnEnemy()

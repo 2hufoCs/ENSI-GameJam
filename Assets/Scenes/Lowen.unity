@@ -119,6 +119,30 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &691369446 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3954926830258653504, guid: 14948a7b599c48f44aba0693774cc6a6, type: 3}
+  m_PrefabInstance: {fileID: 5190052621679480841}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &691369447 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2305744125295912768, guid: 14948a7b599c48f44aba0693774cc6a6, type: 3}
+  m_PrefabInstance: {fileID: 5190052621679480841}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &691369450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691369446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8448f9c44297da041be1175ec3faae1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _anim: {fileID: 691369447}
+  _triggerName: Death
 --- !u!1 &763223800
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,7 +511,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3954926830258653504, guid: 14948a7b599c48f44aba0693774cc6a6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 691369450}
   m_SourcePrefab: {fileID: 100100000, guid: 14948a7b599c48f44aba0693774cc6a6, type: 3}
 --- !u!1001 &6819958925279241037
 PrefabInstance:

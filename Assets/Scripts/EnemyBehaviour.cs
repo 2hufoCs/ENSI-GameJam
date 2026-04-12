@@ -12,6 +12,7 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] float _damage;
     public string keysRequirements;
     [SerializeField] TextMeshProUGUI _keysRequirementsTxt;
+    [SerializeField] CircularTextRender circularTextRender;
     bool[] _keysPressed;
 
     [HideInInspector] public bool isActive = true;
@@ -45,6 +46,8 @@ public class EnemyBehaviour : MonoBehaviour
         target = PlayerInput.Instance.gameObject.transform;
 
         _keysRequirementsTxt.text = keysRequirements;
+        circularTextRender.inputText = keysRequirements;
+        circularTextRender.UpdateText();
         _moveSpeed -= _speedReductionMult * (keysRequirements.Length - 1);
     }
 
@@ -138,7 +141,13 @@ public class EnemyBehaviour : MonoBehaviour
     {
         isActive = false;
         freeze = true;
+
         GetComponent<SpriteRenderer>().enabled = false;
         _keysRequirementsTxt.enabled = false;
+
+        for (int i = 0; i < circularTextRender.transform.childCount; i++)
+        {
+            Destroy(circularTextRender.transform.GetChild(i).gameObject);
+        }
     }
 }

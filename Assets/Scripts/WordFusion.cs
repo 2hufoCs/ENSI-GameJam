@@ -11,8 +11,19 @@ public class WordFusion : MonoBehaviour
         public readonly Queue<List<String>> finalQueue = new Queue<List<string>>();
 
         [SerializeField] private string testWord;
-        [SerializeField] private string testWord2;    
+        [SerializeField] private string testWord2;
 
+        public List<string> LimitedDequeue(int limit)
+        {
+                List<string> list = finalQueue.Dequeue();
+                while (list.Count > limit)
+                {
+                        list.RemoveAt(Random.Range(0, list.Count));
+                }
+                return list;
+        }
+        
+        
         public int InitiateKeys(string initialWord,string finalWord)
         {
                 int numberOfWaves = GenerateListStack(initialWord);
@@ -27,8 +38,6 @@ public class WordFusion : MonoBehaviour
                 finalQueue.Enqueue(GenerateInitialList(finalWord));
                 return numberOfWaves;
         }
-        
-        
         
         [Button]
         private List<string> Combine()
@@ -65,9 +74,6 @@ public class WordFusion : MonoBehaviour
                         }
                 }
                 return null;
-
-                //PrintStack();
-
         }
         private List<string> GrabTopStacks()
         {
@@ -98,7 +104,6 @@ public class WordFusion : MonoBehaviour
                         total += stack.Count - 1;
                         _stackList.Add(stack);
                 }
-
                 total+= 2;
                 return total;
         }
@@ -203,24 +208,6 @@ public class WordFusion : MonoBehaviour
                         (ts[i], ts[r]) = (ts[r], ts[i]);
                 }
         }
-        
-        [Button]
-        private void PrintStack()
-        {
-                foreach(Stack<List<string>> finalStack in _stackList)
-                {
-                        foreach (List<string> printStack in finalStack)
-                        {
-                                var printing = "";
-                                foreach (string letter in printStack)
-                                {
-                                        printing += " , " + letter;
-                                }
-
-                                Debug.Log(printing);
-                        }
-                }
-        }
 
         [Button]
         private void PrintQueue()
@@ -235,19 +222,31 @@ public class WordFusion : MonoBehaviour
                         Debug.Log(printing);
                 }
         }
-        
-        
-        [Button]
-        private void GlobalTest()
+
+        private void PrintListString(List<string> list)
         {
-                print(GenerateListStack(testWord));
-                //PrintStack();
-                print("Count : " + _stackList.Count);
-                Combine();
+                string printing = "";
+                foreach (string letter in list)
+                {
+                        printing += " , " + letter;
+                }
+                Debug.Log(printing);
         }
+        
         [Button]
         private void BigSpookyTest()
         {
                 InitiateKeys(testWord, testWord2);
+        }
+        [Button]
+        private void NewSystemTest()
+        {
+                
+                InitiateKeys(testWord, testWord2);
+                PrintListString(LimitedDequeue(2));
+                InitiateKeys(testWord, testWord2);
+                PrintListString(LimitedDequeue(4));
+                InitiateKeys(testWord, testWord2);
+                PrintListString(LimitedDequeue(6));
         }
 }

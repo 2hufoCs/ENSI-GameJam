@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -83,15 +83,15 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: de35a73d05e3a314bb2d319a2222c82c, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.5, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!65 &846073869593620812
 BoxCollider:
@@ -126,5 +126,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2635afea851d8141be0cd5937de09e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
-  velocity: 5
+  velocity: 8
+  spriteRenderer: {fileID: 1705527976650038914}
+  spriteSheet:
+  - {fileID: -60815652, guid: 6a7848eadf94b1c4ab9ef434ba95e22a, type: 3}
+  - {fileID: 1506848175, guid: 6a7848eadf94b1c4ab9ef434ba95e22a, type: 3}
+  - {fileID: 698513997, guid: 6a7848eadf94b1c4ab9ef434ba95e22a, type: 3}
+  - {fileID: -970540444, guid: 6a7848eadf94b1c4ab9ef434ba95e22a, type: 3}
+  - {fileID: -1277799161, guid: 6a7848eadf94b1c4ab9ef434ba95e22a, type: 3}
+  - {fileID: -1933959292, guid: 6a7848eadf94b1c4ab9ef434ba95e22a, type: 3}
+  - {fileID: 700375693, guid: 6a7848eadf94b1c4ab9ef434ba95e22a, type: 3}
+  - {fileID: -701246996, guid: 6a7848eadf94b1c4ab9ef434ba95e22a, type: 3}
+  interval: 0.05
   initialDir: {x: 0, y: 0, z: 0}
+  initialHeldKeys: 

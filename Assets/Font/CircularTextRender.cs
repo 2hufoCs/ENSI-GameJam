@@ -11,6 +11,10 @@ public class CircularTextRender : MonoBehaviour
     [SerializeField,MinMaxSlider(0f,50f)] private Vector2 distanceRange;
     [SerializeField,MinMaxSlider(-20f,20f)] private Vector2 angleNoise;
     [SerializeField] private TextRender textRender;
+    [CurveRange(0, 0, 10, 10)]
+    [SerializeField] private AnimationCurve shakeDistanceCurve;
+    [CurveRange(0, 0.01f, 10, 0.5f)]
+    [SerializeField] private AnimationCurve shakeIntervalCurve;
     
     [Button]
     public void UpdateText()
@@ -52,6 +56,9 @@ public class CircularTextRender : MonoBehaviour
             characterGo.AddComponent<Image>().rectTransform.sizeDelta = textRenderCharacters.sprite.rect.size * fontSize;
             characterGo.transform.localPosition = position;
             characterGo.GetComponent<Image>().sprite = textRenderCharacters.sprite;
+            UISimpleShake shake = characterGo.AddComponent<UISimpleShake>();
+            shake.range = shakeDistanceCurve.Evaluate(inputText.Length);
+            shake.shakeInterval = shakeIntervalCurve.Evaluate(inputText.Length);
         }
     }
     

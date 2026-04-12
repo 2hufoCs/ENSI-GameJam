@@ -12,7 +12,6 @@ public class CircularTextRender : MonoBehaviour
     [SerializeField] private float fontSize;
     [SerializeField,MinMaxSlider(0f,50f)] private Vector2 distanceRange;
     [SerializeField,MinMaxSlider(-20f,20f)] private Vector2 angleNoise;
-    [SerializeField] private TextRender textRender;
     [CurveRange(0, 0, 10, 10)]
     [SerializeField] private AnimationCurve shakeDistanceCurve;
     [CurveRange(0, 0.01f, 10, 0.5f)]
@@ -50,6 +49,7 @@ public class CircularTextRender : MonoBehaviour
             angle += Random.Range(angleNoise.x*10, angleNoise.y*10)/10;
             
             Vector3 position = Quaternion.AngleAxis(angle,Vector3.forward ) * Vector3.up;
+            position *= transform.localScale.x;
             position *= Random.Range(distanceRange.x*10, distanceRange.y*10)/10;
             TextRenderCharacters textRenderCharacters = FindLetter(inputText[i]);
             if (textRenderCharacters != null)
@@ -60,8 +60,6 @@ public class CircularTextRender : MonoBehaviour
         
         InstantiateAnimation();
         
-        textRender.inputText = inputText;
-        textRender.UpdateText();
     }
 
     private void InstantiateAnimation()
@@ -84,6 +82,7 @@ public class CircularTextRender : MonoBehaviour
         GameObject animationGo = new GameObject("Animation");
         animationGo.transform.SetParent(transform);
         animationGo.transform.localPosition = Vector3.zero;
+        animationGo.transform.localScale = transform.localScale;
         animationGo.AddComponent<Image>().rectTransform.sizeDelta = selectedAnimation.frames[0].rect.size * selectedAnimation.scale;
         animationGo.GetComponent<Image>().sprite = selectedAnimation.frames[0];
         UIAnimator goAnimation = animationGo.AddComponent<UIAnimator>();
@@ -95,7 +94,7 @@ public class CircularTextRender : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
-            if (child.gameObject != textRender.gameObject) Destroy(child.gameObject);
+            Destroy(child.gameObject);
         }
     }
     
@@ -107,10 +106,12 @@ public class CircularTextRender : MonoBehaviour
             characterGo.transform.SetParent(transform);
             characterGo.AddComponent<Image>().rectTransform.sizeDelta = textRenderCharacters.sprite.rect.size * fontSize;
             characterGo.transform.localPosition = position;
+            characterGo.transform.localScale = transform.localScale;
             characterGo.GetComponent<Image>().sprite = textRenderCharacters.sprite;
             UISimpleShake shake = characterGo.AddComponent<UISimpleShake>();
             shake.range = shakeDistanceCurve.Evaluate(inputText.Length);
             shake.shakeInterval = shakeIntervalCurve.Evaluate(inputText.Length);
+            shake.basePosition = position;
         }
     }
     

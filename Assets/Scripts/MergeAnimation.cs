@@ -85,6 +85,7 @@ public class MergeAnimation : MonoBehaviour
             InstantiateAnimation(character.ToString(),_rightPanel);
         }
         _moveTimer = 0;
+        RandomSfxPlayer.Instance.Play("Merge");
     }
     
     

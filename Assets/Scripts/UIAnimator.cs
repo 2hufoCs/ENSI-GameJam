@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class UIAnimator : MonoBehaviour
 {
-    [SerializeField] private List<Sprite> frames;
-    [SerializeField] private float frameDuration;
+    public List<Sprite> frames;
+    public float frameDuration;
     
     private float timer;
     private int frame;

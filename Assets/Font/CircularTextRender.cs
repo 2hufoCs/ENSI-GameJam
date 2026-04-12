@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using NaughtyAttributes;
+using Random = UnityEngine.Random;
 
 public class CircularTextRender : MonoBehaviour
 {
@@ -11,6 +13,31 @@ public class CircularTextRender : MonoBehaviour
     [SerializeField,MinMaxSlider(0f,50f)] private Vector2 distanceRange;
     [SerializeField,MinMaxSlider(-20f,20f)] private Vector2 angleNoise;
     [SerializeField] private TextRender textRender;
+    [CurveRange(0, 0, 10, 10)]
+    [SerializeField] private AnimationCurve shakeDistanceCurve;
+    [CurveRange(0, 0.01f, 10, 0.5f)]
+    [SerializeField] private AnimationCurve shakeIntervalCurve;
+    [SerializeField] private List<AnimationRange> animationRanges;
+
+
+    private bool _isGlowing;
+    public bool IsGlowing
+    {
+        get
+        {
+            return _isGlowing;
+        }
+        set
+        {
+            _isGlowing = value;
+            GlowStateChange();
+        }
+    }
+
+    void GlowStateChange()
+    {
+        
+    }
     
     [Button]
     public void UpdateText()
@@ -31,8 +58,36 @@ public class CircularTextRender : MonoBehaviour
             }
         }
         
+        InstantiateAnimation();
+        
         textRender.inputText = inputText;
         textRender.UpdateText();
+    }
+
+    private void InstantiateAnimation()
+    {
+        List<int> Indexs = new List<int>();
+        for (int i = 0; i < animationRanges.Count; i++)
+        {
+            if(animationRanges[i].IsInRange(inputText.Length)) Indexs.Add(i) ;
+        }
+
+        AnimationRange selectedAnimation;
+        if (Indexs.Count < 1)
+        {
+            selectedAnimation = animationRanges[^1];
+        }
+        else
+        {
+            selectedAnimation = animationRanges[Indexs[Random.Range(0, Indexs.Count)]];
+        }
+        GameObject animationGo = new GameObject("Animation");
+        animationGo.transform.SetParent(transform);
+        animationGo.transform.localPosition = Vector3.zero;
+        animationGo.AddComponent<Image>().rectTransform.sizeDelta = selectedAnimation.frames[0].rect.size * selectedAnimation.scale;
+        UIAnimator goAnimation = animationGo.AddComponent<UIAnimator>();
+        goAnimation.frameDuration = selectedAnimation.frameDuration;
+        goAnimation.frames = selectedAnimation.frames;
     }
     
     private void DeleteChild()
@@ -52,8 +107,13 @@ public class CircularTextRender : MonoBehaviour
             characterGo.AddComponent<Image>().rectTransform.sizeDelta = textRenderCharacters.sprite.rect.size * fontSize;
             characterGo.transform.localPosition = position;
             characterGo.GetComponent<Image>().sprite = textRenderCharacters.sprite;
+            UISimpleShake shake = characterGo.AddComponent<UISimpleShake>();
+            shake.range = shakeDistanceCurve.Evaluate(inputText.Length);
+            shake.shakeInterval = shakeIntervalCurve.Evaluate(inputText.Length);
         }
     }
+    
+    
     
     
     private TextRenderCharacters FindLetter(char letter)
@@ -68,5 +128,22 @@ public class CircularTextRender : MonoBehaviour
         }
 
         return textRenderCharacters;
+    }
+}
+
+[Serializable]
+public class AnimationRange
+{
+    public List<Sprite> frames;
+    public float frameDuration;
+    [MinMaxSlider(0f,10f)]
+    public Vector2 range;
+
+    public float scale;
+
+    public bool IsInRange(int nm)
+    {
+        if(range.x <= nm && nm<= range.y) return true;
+        return false;
     }
 }

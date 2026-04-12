@@ -3,6 +3,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class EnemyBehaviour : MonoBehaviour
 {
     Transform target;
@@ -24,6 +25,18 @@ public class EnemyBehaviour : MonoBehaviour
     void OnDestroy()
     {
         EnemyManager.enemies.Remove(this);
+    }
+
+    void OnEnable()
+    {
+        Actions.OnPlayerDie += WaitForPlayerToDie;
+        Actions.OnWin += HideEnemy;
+    }
+
+    void OnDisable()
+    {
+        Actions.OnPlayerDie -= WaitForPlayerToDie;
+        Actions.OnWin -= HideEnemy;
     }
 
     void Start()
@@ -111,5 +124,20 @@ public class EnemyBehaviour : MonoBehaviour
     {
         PlayerInput.Instance.keysHeld = new();
         Destroy(gameObject);
+    }
+
+    void WaitForPlayerToDie()
+    {
+        // Wait for end of player die anim, then hide sprites
+
+        freeze = false;
+        HideEnemy();
+    }
+
+    void HideEnemy()
+    {
+        isActive = false;
+        freeze = true;
+        GetComponent<SpriteRenderer>().enabled = false;
     }
 }

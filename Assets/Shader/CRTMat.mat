@@ -38,7 +38,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _BlurOffset: 0.0015
-    - _LinesAmount: 200
+    - _LinesAmount: 250
     - _ScanLinesSpeed: -0.003
     - _UseChromaticAberration: 0
     m_Colors:

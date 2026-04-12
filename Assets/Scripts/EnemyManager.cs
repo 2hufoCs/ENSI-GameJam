@@ -47,12 +47,14 @@ public class EnemyManager : MonoBehaviour
 
     void OnEnable()
     {
-        Actions.OnPlayerDie += FreezeEnemies;
+        Actions.OnWin += StopSpawn;
+        Actions.OnPlayerDie += StopSpawn;
     }
 
     void OnDisable()
     {
-        Actions.OnPlayerDie -= FreezeEnemies;
+        Actions.OnWin -= StopSpawn;
+        Actions.OnPlayerDie -= StopSpawn;
     }
 
     void StartWave()
@@ -136,18 +138,15 @@ public class EnemyManager : MonoBehaviour
         return closestEnemy;
     }
 
-    void FreezeEnemies()
+    void StopSpawn()
     {
-        foreach (EnemyBehaviour enemy in enemies)
-        {
-            enemy.isActive = false;
-            enemy.freeze = true;
-        }
+        freeze = true;
     }
 
     void Win()
     {
         Debug.Log("you win!!!");
+        Actions.OnWin();
         freeze = true;
     }
 }

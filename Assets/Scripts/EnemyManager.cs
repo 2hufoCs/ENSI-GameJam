@@ -14,6 +14,7 @@ public class EnemyManager : MonoBehaviour
     float maxWaves;
     List<int> mergelessWavesIndexes = new() { 1, 2, 4, 5, 7, 9};
     [SerializeField] float waveInterval;
+    bool waveWait;
 
     List<string> possibleKeyRequirements;
 
@@ -83,18 +84,19 @@ public class EnemyManager : MonoBehaviour
         #endif
 
         // Blur/change lines to show new wave
+        waveWait = true;
         Sequence waveSequence = DOTween.Sequence();
         waveSequence.AppendInterval(waveInterval);
-        waveSequence.OnComplete(() => { SpawnEnemy(); });
+        waveSequence.OnComplete(() => { waveWait = false; });
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (freeze) return;
+        if (freeze || waveWait) return;
 
         // Go to next wave once all enemies are dead
-        if (enemies.Count == 0 && _enemiesLeft == 0)
+        if (enemies.Count == 0 && _enemiesLeft <= 0)
         {
             StartWave();
             return;

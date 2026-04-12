@@ -57,6 +57,8 @@ public class PlayerInput : MonoBehaviour
 
         GetKeysHeld();
 
+        if (!EnemyManager.targetedEnemy) return;
+
         // Only fire when requirements are met
         if (EnemyManager.targetedEnemy.CheckRequirements(ListToString(keysHeld)))
         {

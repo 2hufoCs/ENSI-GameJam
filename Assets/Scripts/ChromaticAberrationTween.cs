@@ -1,11 +1,12 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class ChromaticAberrationTween : MonoBehaviour
 {
     [SerializeField] float baseBlur = .0015f;
 
     [Header("Hit")]
-    [SerializeField] AnimationCurve blurAnimHit;
+    [SerializeField] float blurHit = .01f;
     [SerializeField] float durationHit;
 
     [Header("Die")]

@@ -52,6 +52,7 @@ public class CircularTextRender : MonoBehaviour
             position *= transform.localScale.x;
             position *= Random.Range(distanceRange.x*10, distanceRange.y*10)/10;
             TextRenderCharacters textRenderCharacters = FindLetter(inputText[i]);
+            if (inputText.Length == 1) position = Vector3.zero;
             if (textRenderCharacters != null)
             {
                 InstantiateCharacters(textRenderCharacters , position);

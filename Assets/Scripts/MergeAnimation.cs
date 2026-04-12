@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using NaughtyAttributes;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class MergeAnimation : MonoBehaviour
@@ -11,13 +13,20 @@ public class MergeAnimation : MonoBehaviour
     [SerializeField] private RectTransform _leftPanel;
     [SerializeField] private RectTransform _rightPanel;
     [SerializeField] private float _startDistance;
-    [SerializeField] private AnimationCurve _animationCurve;
+    [SerializeField,CurveRange(0,0,1,1)] private AnimationCurve _movementCurve;
     [SerializeField] private float _moveTime;
     [SerializeField] private float _glitchTime;
 
-    public void Start()
+    private float _moveTimer = float.PositiveInfinity;
+    private float _glitchTimer = float.PositiveInfinity;
+    
+    public void Update()
     {
-
+        if (_moveTimer <= _moveTime)
+        {
+            float distance = _startDistance * _movementCurve.Evaluate(_moveTimer / _moveTime);
+            _leftPanel.offsetMax = new Vector2(distance , _leftPanel.offsetMax.y);
+        }
     }
 
     public void StartAnimation(List<string> oldList, List<string> newList)
@@ -41,15 +50,15 @@ public class MergeAnimation : MonoBehaviour
         {
             InstantiateAnimation(character.ToString(),_rightPanel);
         }
+        _moveTimer = 0;
     }
     
     
     public void InstantiateAnimation(string letter,Transform parent)
     {
+        print(letter);
         foreach (GlitchAnimations glitchAnimations in _clips)
         {
-            print(glitchAnimations.name);
-            print(glitchAnimations.name == letter);
             if (glitchAnimations.name == letter)
             {
                 GameObject panel = Instantiate(_panelPrefab, parent);

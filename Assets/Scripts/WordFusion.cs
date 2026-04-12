@@ -14,10 +14,14 @@ public class WordFusion : MonoBehaviour
 
         [SerializeField] private string testWord;
         [SerializeField] private string testWord2;
+        private List<string> _oldList = new List<string>();
 
         public List<string> LimitedDequeue(int limit)
         {
                 List<string> list = finalQueue.Dequeue();
+                if (_oldList.Count > 0) { mergeAnimation?.StartAnimation(_oldList, list); }
+                _oldList = list;
+                
                 while (list.Count > limit)
                 {
                         list.RemoveAt(Random.Range(0, list.Count));

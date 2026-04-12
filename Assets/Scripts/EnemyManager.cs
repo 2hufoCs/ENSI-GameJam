@@ -70,7 +70,7 @@ public class EnemyManager : MonoBehaviour
             Win();
             return;
         }
-        if (!mergelessWavesIndexes.Contains(currentWave)) possibleKeyRequirements = wordFusion.finalQueue.Dequeue();
+        if (!mergelessWavesIndexes.Contains(currentWave)) possibleKeyRequirements = wordFusion.LimitedDequeue(99);
 
         currentWave++;
 

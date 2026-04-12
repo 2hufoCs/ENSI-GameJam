@@ -85,6 +85,7 @@ public class CircularTextRender : MonoBehaviour
         animationGo.transform.SetParent(transform);
         animationGo.transform.localPosition = Vector3.zero;
         animationGo.AddComponent<Image>().rectTransform.sizeDelta = selectedAnimation.frames[0].rect.size * selectedAnimation.scale;
+        animationGo.GetComponent<Image>().sprite = selectedAnimation.frames[0];
         UIAnimator goAnimation = animationGo.AddComponent<UIAnimator>();
         goAnimation.frameDuration = selectedAnimation.frameDuration;
         goAnimation.frames = selectedAnimation.frames;

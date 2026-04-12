@@ -103,8 +103,8 @@ MonoBehaviour:
     sprite: {fileID: -897687130, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
   - letter: 90
     sprite: {fileID: -595220279, guid: 7c4dcfeadcb143d41a861c72013897c3, type: 3}
-  inputText: LOVE
-  fontSize: 1
+  inputText: LO
+  fontSize: 0.75
   distanceRange: {x: 25, y: 35}
   angleNoise: {x: -5, y: 5}
   textRender: {fileID: 4545495166970958336}
@@ -122,7 +122,7 @@ MonoBehaviour:
       outWeight: 0.087020606
     - serializedVersion: 3
       time: 10
-      value: 8.309525
+      value: 10
       inSlope: 1.9729997
       outSlope: 1.9729997
       tangentMode: 0
@@ -138,20 +138,20 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0.3728658
-      inSlope: -0.008422739
-      outSlope: -0.008422739
+      inSlope: 0.005224412
+      outSlope: 0.005224412
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.09748912
+      outWeight: 0.06637168
     - serializedVersion: 3
-      time: 9.9852295
-      value: 0.042999268
-      inSlope: -0.07479881
-      outSlope: -0.07479881
+      time: 10
+      value: 0.01
+      inSlope: -0.046529274
+      outSlope: -0.046529274
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.062036496
+      inWeight: 0.050147533
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -167,7 +167,7 @@ MonoBehaviour:
     - {fileID: 182372456, guid: ce5f262f9f3a65d49b30e00959117fe5, type: 3}
     frameDuration: 0.2
     range: {x: 0, y: 2}
-    scale: 1
+    scale: 0.9
   - frames:
     - {fileID: 51514616, guid: 337806ec28608974f8082c70c2a94c8e, type: 3}
     - {fileID: -499052650, guid: 337806ec28608974f8082c70c2a94c8e, type: 3}
@@ -177,7 +177,7 @@ MonoBehaviour:
     - {fileID: 215044224, guid: 337806ec28608974f8082c70c2a94c8e, type: 3}
     - {fileID: -69737334, guid: 337806ec28608974f8082c70c2a94c8e, type: 3}
     frameDuration: 0.15
-    range: {x: 3, y: 4}
+    range: {x: 1, y: 4}
     scale: 0.75
   - frames:
     - {fileID: -1482335271, guid: 9435dcae75ba51746bcf71034c518f27, type: 3}
@@ -188,7 +188,7 @@ MonoBehaviour:
     - {fileID: -2071313496, guid: 9435dcae75ba51746bcf71034c518f27, type: 3}
     - {fileID: 1532582231, guid: 9435dcae75ba51746bcf71034c518f27, type: 3}
     frameDuration: 0.1
-    range: {x: 5, y: 6}
+    range: {x: 2, y: 5}
     scale: 0.65
   - frames:
     - {fileID: 1995501024, guid: 2115b8560951a5d4a8369abe268879ad, type: 3}
@@ -199,8 +199,19 @@ MonoBehaviour:
     - {fileID: -2056991842, guid: 2115b8560951a5d4a8369abe268879ad, type: 3}
     - {fileID: -1911852255, guid: 2115b8560951a5d4a8369abe268879ad, type: 3}
     frameDuration: 0.07
-    range: {x: 7, y: 8}
-    scale: 1.25
+    range: {x: 3, y: 6}
+    scale: 1.1
+  - frames:
+    - {fileID: -2077896305, guid: a6e8b94a30463f449885154ccd038866, type: 3}
+    - {fileID: 1118910992, guid: a6e8b94a30463f449885154ccd038866, type: 3}
+    - {fileID: 2134034886, guid: a6e8b94a30463f449885154ccd038866, type: 3}
+    - {fileID: -344753700, guid: a6e8b94a30463f449885154ccd038866, type: 3}
+    - {fileID: -802297, guid: a6e8b94a30463f449885154ccd038866, type: 3}
+    - {fileID: 412431540, guid: a6e8b94a30463f449885154ccd038866, type: 3}
+    - {fileID: 1168716930, guid: a6e8b94a30463f449885154ccd038866, type: 3}
+    frameDuration: 0.1
+    range: {x: 5, y: 9}
+    scale: 0.75
 --- !u!222 &4541365896650239369
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -295,7 +306,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3105462415369484657, guid: 8ae56c513e282c54c865e189e8edbc4d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 45
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 3105462415369484657, guid: 8ae56c513e282c54c865e189e8edbc4d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

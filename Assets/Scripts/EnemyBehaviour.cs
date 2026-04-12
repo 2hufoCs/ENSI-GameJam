@@ -145,7 +145,7 @@ public class EnemyBehaviour : MonoBehaviour
         freeze = true;
 
         GetComponent<SpriteRenderer>().enabled = false;
-        _keysRequirements.enabled = false;
+        _keysRequirements.gameObject.SetActive(false);
 
         for (int i = 0; i < circularTextRender.transform.childCount; i++)
         {

@@ -149,28 +149,28 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 0.0041656494
       value: 1
-      inSlope: -0.2054547
-      outSlope: -0.2054547
+      inSlope: -0.12244844
+      outSlope: -0.12244844
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.16224189
+      outWeight: 0.2343104
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -2.9682024
-      outSlope: -2.9682024
+      inSlope: -3.174601
+      outSlope: -3.174601
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.045722723
+      inWeight: 0.03765689
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _moveTime: 0.3
-  _glitchTime: 0.8
+  _moveTime: 0.4
+  _glitchTime: 1
   _glitchPrefab: {fileID: 2672580536104289530, guid: 9126fb6e3f5a6794fa6cb5e541f4b0b3, type: 3}
 --- !u!1 &2497522375198773672
 GameObject:

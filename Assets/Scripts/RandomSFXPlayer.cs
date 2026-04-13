@@ -45,11 +45,8 @@ public class RandomSfxPlayer : MonoBehaviour
     {
         if (Instance !=null && Instance != this)
         {
-            Destroy(this);
+            Destroy(Instance);
         }
-        else
-        {
-            Instance = this;
-        }
+        Instance = this;
     }
 }

@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
+using NUnit.Framework;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -12,8 +14,11 @@ public class UISceneTransitionLoader : MonoBehaviour
 {
     [SerializeField] private float _fadeInDuration = 1f;
     [SerializeField] private float _fadeDuration = 1f;
+    [SerializeField] private float _fadeOutDuration = 1f;
+    
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private Image _image;
+    [SerializeField] private Volume _globalVolume;
     [SerializeField] private List<SceneTransitions> _sceneTransitions;
     [Serializable]
     public class SceneTransitions
@@ -45,6 +50,23 @@ public class UISceneTransitionLoader : MonoBehaviour
         _canvasGroup.alpha = 1;
         yield return new WaitForSeconds(_fadeDuration);
 
+        
+
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName,LoadSceneMode.Additive);
+        asyncOperation.allowSceneActivation = false;
+
+
+
+        bool isReady = true;
+        while (isReady)
+        {
+            yield return null;
+            if (asyncOperation.progress >= 0.9f)
+            {
+                isReady = false;   
+            }
+        }
+
         foreach (GameObject a in FindObjectsByType<GameObject>(FindObjectsSortMode.None))
         {
             bool isUsed = false;
@@ -57,23 +79,35 @@ public class UISceneTransitionLoader : MonoBehaviour
             }
             if (a == gameObject) isUsed = true;
             if (a == transform.parent.gameObject) isUsed = true;
+            if(_globalVolume != null) if (a == _globalVolume.gameObject) isUsed = true;
 
-            if (!isUsed) a.SetActive(false);
+            if (!isUsed) Destroy(a);
         }
+
         
         
-        if (sceneName != null) 
+        asyncOperation.allowSceneActivation = true;
+        while(!asyncOperation.isDone) yield return new WaitForNextFrameUnit();
+
+        if(_globalVolume != null)
         {
-            SceneManager.LoadScene(sceneName,LoadSceneMode.Additive);
+            _globalVolume.enabled = false;
+            _globalVolume.enabled = true;
         }
 
+        transform.parent.gameObject.GetComponent<Canvas>().worldCamera = Camera.main ; 
+        
+        yield return new WaitForNextFrameUnit();
+        
+  
         time = 0;
-        while (time < _fadeInDuration)
+        while (time < _fadeOutDuration)
         {
-            _canvasGroup.alpha = 1 - time / _fadeInDuration;
+            _canvasGroup.alpha = 1 - (time / _fadeOutDuration);
             time += Time.deltaTime;
             yield return new WaitForNextFrameUnit();
         }
+
         SceneManager.UnloadSceneAsync(currentScene);
     }
 }

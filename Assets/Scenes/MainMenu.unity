@@ -405,8 +405,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 575070033}
-        m_TargetAssemblyTypeName: UISceneTransitionLoader, Assembly-CSharp
+      - m_Target: {fileID: 575070034}
+        m_TargetAssemblyTypeName: SceneTransition, Assembly-CSharp
         m_MethodName: FadeOut
         m_Mode: 5
         m_Arguments:
@@ -561,17 +561,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4496204542539991343, guid: aac1f1fa94b7b9a449c73a1869d78340, type: 3}
   m_PrefabInstance: {fileID: 8334148644609774738}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &575070033 stripped
+--- !u!114 &575070034 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2514835406668289254, guid: aac1f1fa94b7b9a449c73a1869d78340, type: 3}
+  m_CorrespondingSourceObject: {fileID: 5856420771024286099, guid: aac1f1fa94b7b9a449c73a1869d78340, type: 3}
   m_PrefabInstance: {fileID: 8334148644609774738}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbcd1fe9c1ac5be4cb934bc9c028d365, type: 3}
+  m_Script: {fileID: 11500000, guid: 0730f2469fd967d44a057c020130a4be, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UISceneTransitionLoader
+  m_EditorClassIdentifier: Assembly-CSharp::SceneTransition
 --- !u!1 &590034117
 GameObject:
   m_ObjectHideFlags: 0

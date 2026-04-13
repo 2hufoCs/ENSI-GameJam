@@ -22,7 +22,6 @@ public class MergeAnimation : MonoBehaviour
 
     private float _moveTimer = float.PositiveInfinity;
     private float _glitchTimer = float.PositiveInfinity;
-    private GameObject _glitchObject;
     
     public void Update()
     {
@@ -41,7 +40,6 @@ public class MergeAnimation : MonoBehaviour
                 instantiate.GetComponent<UIAnimator>().frames = _glitchClips[Random.Range(0,_glitchClips.Count)].sprites;
                 instantiate.GetComponent<UISimpleShake>().shakeInterval = _frameDuration / 2;
                 instantiate.GetComponent<UISimpleShake>().range = _shakeRange;
-                _glitchObject = instantiate;
             }
         }
 
@@ -58,7 +56,13 @@ public class MergeAnimation : MonoBehaviour
                 {
                     Destroy(child.gameObject);
                 }
-                Destroy(_glitchObject);
+                foreach (Transform child in transform)
+                {
+                    if(child.gameObject != _leftPanel || child.gameObject != _rightPanel)
+                    {
+                        Destroy(child.gameObject);
+                    }
+                }
             }
         }
     }

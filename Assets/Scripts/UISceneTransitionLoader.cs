@@ -42,6 +42,7 @@ public class UISceneTransitionLoader : MonoBehaviour
             time += Time.deltaTime;
             yield return new WaitForNextFrameUnit();
         }
+        _canvasGroup.alpha = 1;
         yield return new WaitForSeconds(_fadeDuration);
 
         foreach (GameObject a in FindObjectsByType<GameObject>(FindObjectsSortMode.None))

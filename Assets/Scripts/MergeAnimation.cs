@@ -58,7 +58,7 @@ public class MergeAnimation : MonoBehaviour
                 }
                 foreach (Transform child in transform)
                 {
-                    if(child.gameObject != _leftPanel || child.gameObject != _rightPanel)
+                    if(child.gameObject.name == "Glitch")
                     {
                         Destroy(child.gameObject);
                     }

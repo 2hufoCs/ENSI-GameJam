@@ -97,7 +97,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4496204542539991343}
-  - component: {fileID: 2514835406668289254}
   - component: {fileID: 8659999461262278907}
   - component: {fileID: 5856420771024286099}
   m_Layer: 5
@@ -128,32 +127,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2514835406668289254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1387768089599824843}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbcd1fe9c1ac5be4cb934bc9c028d365, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UISceneTransitionLoader
-  _fadeInDuration: 1
-  _fadeDuration: 1
-  _fadeOutDuration: 1
-  _canvasGroup: {fileID: 8659999461262278907}
-  _image: {fileID: 2231896559141754971}
-  _globalVolume: {fileID: 0}
-  _sceneTransitions:
-  - colors:
-    - {r: 0.12156863, g: 0.0627451, b: 0.16470589, a: 1}
-    - {r: 0.22352941, g: 0.03529412, b: 0.2784314, a: 1}
-    - {r: 0.38039216, g: 0.09411765, b: 0.31764707, a: 1}
-    - {r: 0.2901961, g: 0.1882353, b: 0.32156864, a: 1}
-    animations:
-    - {fileID: 505366905075064377}
 --- !u!225 &8659999461262278907
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -178,9 +151,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0730f2469fd967d44a057c020130a4be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneTransition
+  _easeType: 14
+  _fadeOutDuration: 0.5
+  _loadingWait: 1.5
   _fadeInDuration: 1
-  _minimunLoadingWait: 1
-  _fadeOutDuration: 1
+  _forceFadeIn: 0
+  _forceBlockFadeIn: 0
   _canvasGroup: {fileID: 8659999461262278907}
   _background: {fileID: 2231896559141754971}
   _sceneTransitions:
@@ -251,7 +227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

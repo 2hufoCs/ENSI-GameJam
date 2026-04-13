@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using DG.Tweening;
 
 public enum Directions { Right = 0, RightUp = 45, Up = 90, UpLeft = 135, Left = 180, LeftDown = 225, Down = 270, DownRight = 315 }
 
@@ -27,6 +28,7 @@ public class PlayerInput : MonoBehaviour
 
     string _alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     bool freeze;
+
 
     void Awake()
     {
@@ -158,8 +160,6 @@ public class PlayerInput : MonoBehaviour
         gunSpriteRenderer.sortingOrder = gunDir == Directions.Down || gunDir == Directions.LeftDown || gunDir == Directions.DownRight ? 2 : 1;
         taskManagerSpriteRenderer.sortingOrder = 3 - gunSpriteRenderer.sortingOrder;
         gunSpriteRenderer.transform.localPosition = gunOffsetPos;
-
-        // TODO: rotate gun
     }
 
     public void Fire()
@@ -178,7 +178,21 @@ public class PlayerInput : MonoBehaviour
         
         // Reset held keys
         keysHeld = new();
+
+        GunAnim();
     }
+
+    void GunAnim()
+    {
+        Transform t = gunSpriteRenderer.transform;
+
+        Sequence gunSeq = DOTween.Sequence(); // Start new sequence
+        gunSeq.Append(t.DOScale(new Vector2(1.5f, .6f), .09f)).SetEase(Ease.InSine); // Squish
+        gunSeq.Append(t.DOScale(new Vector2(.8f, 1.25f), .1f)).SetEase(Ease.OutSine); // Stretch
+        gunSeq.Append(t.DOScale(Vector2.one, .05f)); // Back to normal
+    }
+
+
 
     void HidePlayer()
     {

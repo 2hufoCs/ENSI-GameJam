@@ -22,6 +22,7 @@ public class SceneTransition : MonoBehaviour
     [Required]
     [SerializeField] private Image _background;
     [SerializeField] private List<SceneTransitions> _sceneTransitions;
+    [SerializeField] private GameObject _raycastBlocker; //a game object that would block clicks
     [Serializable]
     public class SceneTransitions
     {
@@ -31,6 +32,7 @@ public class SceneTransition : MonoBehaviour
     }
     public void OnEnable()
     {
+        if(_raycastBlocker) _raycastBlocker.SetActive(false) ;
         if (Resources.Load<SceneTransitionsData>("SceneTransitionsData").sceneTransitionIndex >= 0)
         {
             if (_forceBlockFadeIn)
@@ -62,6 +64,7 @@ public class SceneTransition : MonoBehaviour
 
     public void CreateAnimation(int finalCanvaAlpha, string sceneName = null)
     {
+        if(_raycastBlocker) _raycastBlocker.SetActive(true) ;
         _canvasGroup.alpha = 1 - finalCanvaAlpha;
         Sequence fadeOut = DOTween.Sequence();
         fadeOut.Append(_canvasGroup.DOFade(finalCanvaAlpha, _fadeOutDuration)).SetEase(_easeType);

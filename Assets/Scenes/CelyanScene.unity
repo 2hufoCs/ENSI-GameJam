@@ -1179,14 +1179,16 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 716a1fc6090768a4e840566fa9e6140d, type: 3}
     - {fileID: 8300000, guid: e0b5e3cb0394aeb4586f271a85fecafa, type: 3}
     - {fileID: 8300000, guid: ab7998ceae4f83747b862393a09dc721, type: 3}
+  - name: Bluescreen
+    clips:
+    - {fileID: 8300000, guid: bd8cc942f05ee624b8d8ef8baa8e690b, type: 3}
   - name: Merge
     clips:
     - {fileID: 8300000, guid: e3ac5213af4849743a4e0a7c38797f82, type: 3}
     - {fileID: 8300000, guid: ed6664da7d659d7428b0706594648cfb, type: 3}
     - {fileID: 8300000, guid: 57b4bb985ef0fec448e08dc68c510ef4, type: 3}
-  - name: Bluescreen
-    clips:
-    - {fileID: 8300000, guid: bd8cc942f05ee624b8d8ef8baa8e690b, type: 3}
+    - {fileID: 8300000, guid: ab5876d79a070f34e89f758227640baa, type: 3}
+    - {fileID: 8300000, guid: 0034049821d99594a928d1eb0ecc4034, type: 3}
 --- !u!114 &864765777
 MonoBehaviour:
   m_ObjectHideFlags: 0
